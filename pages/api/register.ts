@@ -35,6 +35,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(200).json(user)
     } catch (error) {
         console.log(error);
-        return res.status(400).end()
+        return res.status(400).json({ error: `Something went wrong: ${error}` });
     }
 }
