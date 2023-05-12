@@ -28,11 +28,11 @@ export default function Home() {
     
 
     return (
-        <>
+        <Layout>
             <Description text="Check how much vacation you have left or how many overtime hours you have already worked!" src="/images/schedule.jpg" alt="Schedule photo"/>
             <Description text="Check how much vacation you have left or how many overtime hours you have already worked!" src="/images/schedule.jpg" alt="Schedule photo"/>
             <Description text="Check how much vacation you have left or how many overtime hours you have already worked!" src="/images/schedule.jpg" alt="Schedule photo"/>
-        </>
+        </Layout>
     )
 
 }

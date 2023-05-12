@@ -1,9 +1,10 @@
+import Layout from "@/components/Layout"
 
 const Overhours = () => {
     return (
-        <>
+        <Layout>
 
-        </>
+        </Layout>
     )
 }
 
