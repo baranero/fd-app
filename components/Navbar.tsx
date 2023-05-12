@@ -6,6 +6,7 @@ import { IoMdSettings } from 'react-icons/io'
 import { signOut } from 'next-auth/react'
 import { useCallback, useState } from "react"
 import MobileMenu from "./MobileMenu"
+import Link from 'next/link';
 
 const TOP_OFFSET = 66
 
@@ -45,9 +46,18 @@ const Navbar = () => {
                         ml-8
                         gap-7
                         ">
-                            <NavbarItem label="Home"/>
-                            <NavbarItem label="Vacations"/>
-                            <NavbarItem label="Overhours"/>
+                            <Link href='/'>
+                                <NavbarItem label="Home"/>
+                            </Link>
+                            <Link href='/vacations'>
+                                <NavbarItem label="Vacations"/>
+                            </Link>
+                            <Link href='/overhours'>
+                                <NavbarItem label="Overhours"/>
+                            </Link>
+                            <Link href='/users'>
+                                <NavbarItem label="Users"/>
+                            </Link>
                     </div>
 
                 </div>

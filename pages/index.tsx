@@ -1,4 +1,5 @@
 import Description from '@/components/Description'
+import Layout from '@/components/Layout'
 import Navbar from '@/components/Navbar'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import { signOut, getSession } from 'next-auth/react'
@@ -28,8 +29,9 @@ export default function Home() {
 
     return (
         <>
-            <Navbar/>
-            <Description/>
+            <Description text="Check how much vacation you have left or how many overtime hours you have already worked!" src="/images/schedule.jpg" alt="Schedule photo"/>
+            <Description text="Check how much vacation you have left or how many overtime hours you have already worked!" src="/images/schedule.jpg" alt="Schedule photo"/>
+            <Description text="Check how much vacation you have left or how many overtime hours you have already worked!" src="/images/schedule.jpg" alt="Schedule photo"/>
         </>
     )
 
