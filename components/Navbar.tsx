@@ -3,6 +3,7 @@ import NavbarItem from "./NavbarItem"
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { BiLogOut } from 'react-icons/bi'
 import { IoMdSettings } from 'react-icons/io'
+import { signOut } from 'next-auth/react'
 
 const Navbar = () => {
     return (
@@ -45,8 +46,8 @@ const Navbar = () => {
                     <GiHamburgerMenu size={30} className="text-white mx-4"/>
                 </div>
                 <div className="hidden lg:flex md:flex flex-row">
-                    <IoMdSettings size={30} className="text-white mx-1"/>
-                    <BiLogOut size={30} className="text-white mx-1"/>
+                    <IoMdSettings size={30} className="text-white mx-1 cursor-pointer"/>
+                    <BiLogOut onClick={() => signOut()} size={30} className="text-white mx-1 cursor-pointer"/>
                 </div>
             </div>
 
