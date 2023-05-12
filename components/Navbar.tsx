@@ -1,5 +1,8 @@
 import Image from "next/image"
 import NavbarItem from "./NavbarItem"
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { BiLogOut } from 'react-icons/bi'
+import { IoMdSettings } from 'react-icons/io'
 
 const Navbar = () => {
     return (
@@ -9,28 +12,44 @@ const Navbar = () => {
               md:px-16
               py-6
               flex
-              flex-row
+              justify-between
               items-center
               transition
               duration-500
               bg-black
             ">
-                <Image
-                        src="/images/logo.png"
-                        alt="Logo"
-                        width={100}
-                        height={100}
-                    />
-                <div className="
-                    flex
-                    ml-8
-                    gap-7
-                    ">
-                        <NavbarItem label="Home"/>
-                        <NavbarItem label="Vacations"/>
-                        <NavbarItem label="Overhours"/>
+                <div className="flex flex-row">
+                    
+                    <Image
+                            src="/images/logo.svg"
+                            alt="Logo"
+                            width={120}
+                            height={100}
+                        />
+                    <div className="
+                        hidden
+                        lg:flex
+                        md:flex
+                        ml-8
+                        gap-7
+                        ">
+                            <NavbarItem label="Home"/>
+                            <NavbarItem label="Vacations"/>
+                            <NavbarItem label="Overhours"/>
+                    </div>
+                </div>
+                
+                    
+                <div className="lg:hidden md:hidden
+                ">
+                    <GiHamburgerMenu size={30} className="text-white mx-4"/>
+                </div>
+                <div className="hidden lg:flex md:flex flex-row">
+                    <IoMdSettings size={30} className="text-white mx-1"/>
+                    <BiLogOut size={30} className="text-white mx-1"/>
                 </div>
             </div>
+
         </nav>
     )
 }
