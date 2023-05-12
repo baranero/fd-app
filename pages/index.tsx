@@ -1,3 +1,4 @@
+import Description from '@/components/Description'
 import Navbar from '@/components/Navbar'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import { signOut, getSession } from 'next-auth/react'
@@ -28,6 +29,7 @@ export default function Home() {
     return (
         <>
             <Navbar/>
+            <Description/>
         </>
     )
 
