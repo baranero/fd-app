@@ -1,4 +1,6 @@
 import React from "react";
+import NavbarItem from "./NavbarItem";
+import Link from "next/link";
 
 interface MobileMenuProps {
     visible?: boolean;
@@ -11,11 +13,21 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ visible }) => {
     }
 
     return (
-        <div className="bg-black w-full top-8 right-0 py-5 flex-col bordr-2 border-gray-800 flex">
+        <div className="bg-black text-center w-full top-8 right-0 py-5 flex-col bordr-2 border-gray-800 flex">
             <div className="flex flex-col gap-4">
-                <div className="px-3 text-center text-white cursor-pointer hover:underline">Home</div>
-                <div className="px-3 text-center text-white cursor-pointer hover:underline">Vacations</div>
-                <div className="px-3 text-center text-white cursor-pointer hover:underline">Overhours</div>
+                <Link href='/'>
+                    <NavbarItem label="Home"/>
+                </Link>
+                <Link href='/vacations'>
+                                <NavbarItem label="Vacations"/>
+                            </Link>
+                            <Link href='/overhours'>
+                                <NavbarItem label="Overhours"/>
+                            </Link>
+                            <Link href='/users'>
+                                <NavbarItem label="Users"/>
+                            </Link>
+
             </div>
         </div>
     )

@@ -10,8 +10,8 @@ interface DescriptionProps {
 const Description: React.FC<DescriptionProps> = ({ text, src, alt }) => {
     return (
 
-            <div className="grid grid-cols-2 mx-auto mt-10 rounded-2xl bg-zinc-600 w-[60%]">
-                <p className="text-white text-2xl my-auto px-4 text-center md:text-xl">
+            <div className="grid lg:grid-cols-2 sm:grid-cols-1 mx-auto mt-10 rounded-2xl bg-zinc-600 lg:w-[60%] sm:w-full">
+                <p className="text-white lg:order-first sm:order-last text-2xl my-auto px-4 text-center md:text-xl">
                 {text}
                 </p>
 <div className="relative h-96">
