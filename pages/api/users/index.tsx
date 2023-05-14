@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await serverAuth(req, res);
 
-    const users = await prismadb.user.findMany();
+    const users = await prismadb.firefighters.findMany();
 
     return res.status(200).json(users);
   } catch (error) {

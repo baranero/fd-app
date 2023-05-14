@@ -16,11 +16,11 @@ export async function getServerSideProps(context: NextPageContext) {
             }
         }
     }
-
+  
     return {
         props: {}
     }
-}
+  }
 
 export default function Home() {
 

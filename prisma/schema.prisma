@@ -12,33 +12,28 @@ datasource db {
 
 model User {
   id            String        @id
-  name          String
+  name          String @unique
   image         String?
   email         String?   @unique
   emailVerified DateTime?
   hashedPassword String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
+  firefighter Firefighters @relation(fields: [name], references: [name])
   accounts Account[]
   sessions Session[]
-  vacations Vacations[]
-  overhours Overhours[]
 
   @@map(name: "users")
 }
 
-model Vacations {
-  id  String @id
-  user User @relation(fields: [userId], references: [id])
-  userId String
+model Firefighters {
+  id String @id 
+  name String @unique
   vacations Int
-}
+  overhours Int
+  user User[]
 
-model Overhours {
-  id  String @id
-  user User @relation(fields: [userId], references: [id])
-  userId String
-  vacations Int
+    @@map(name: "firefighters")
 }
 
 model Account {
