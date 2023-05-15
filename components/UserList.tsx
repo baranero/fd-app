@@ -13,13 +13,30 @@ const UserList: React.FC<UserListProps> = ({ data }) => {
     }
 
     return (
-        <div className='grid grid-cols-5 w-full justify-center'>
+        <div className='grid lg:grid-cols-5 md:grid-cols-2 sm:grid-cols-1 w-full justify-center'>
             {data.map((user) => (
-                <div className='bg-white bg-opacity-50 rounded-md shadow-lg mx-auto mt-10 w-72' key={user.id}>
+                <div className='bg-white group bg-opacity-50 rounded-md shadow-lg mx-auto mt-10 lg:w-72 sm:w-96 transition duration delay-300 h-max' key={user.id}>
                     <HiOutlineUserCircle className='mx-auto' size={150}/>
                     <p className='text-center my-2'>{user.name}</p>
-                    <p className='my-2'><strong>Overhours:</strong> {user.overhours}</p>
-                    <p className='my-2'><strong>Vacations:</strong> {user.vacations}</p>
+                    <div className='
+                        
+                        hidden
+                        transition-opacity
+                        opacity-0
+                        duration-150
+                        z-10
+                        delay-300
+                        w-full
+                        invisible
+                        scale-0
+                        group-hover:visible
+                        group-hover:block
+                        group-hover:scale-100
+                        group-hover:opacity-100
+                    '>
+                        <p className='m-4 '><strong>Overhours:</strong> {user.overhours}</p>
+                        <p className='m-4'><strong>Vacations:</strong> {user.vacations}</p>
+                    </div>
                     <button className='bg-gray-500 w-full rounded-b-md py-3 hover:bg-gray-700 cursor-pointer transition'>View profile</button>
                 </div>
             )

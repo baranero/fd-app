@@ -1,4 +1,6 @@
 import Layout from "@/components/Layout"
+import OverhoursChart from "@/components/OverhoursChart"
+import useUserList from "@/hooks/useUserList"
 import { NextPageContext } from "next"
 import { getSession } from "next-auth/react"
 
@@ -20,9 +22,12 @@ export async function getServerSideProps(context: NextPageContext) {
   }
   
 const Overhours = () => {
+
+    const { data: Firefighters = [] } = useUserList()
+
     return (
         <Layout>
-
+            <OverhoursChart users={Firefighters}/>
         </Layout>
     )
 }
