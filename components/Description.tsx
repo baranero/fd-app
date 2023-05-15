@@ -2,24 +2,24 @@ import Image from "next/image"
 import React from "react";
 
 interface DescriptionProps {
+    title: string;
     text: string;
     src: string;
     alt: string;
 }
 
-const Description: React.FC<DescriptionProps> = ({ text, src, alt }) => {
+const Description: React.FC<DescriptionProps> = ({ title, text, src, alt }) => {
     return (
-
-            <div className="grid lg:grid-cols-2 sm:grid-cols-1 mx-auto mt-10 rounded-2xl bg-zinc-600 lg:w-[60%] sm:w-full">
-                <p className="text-white lg:order-first sm:order-last text-2xl my-auto px-4 text-center md:text-xl">
-                {text}
-                </p>
-<div className="relative h-96">
-    
-                            <Image className="object-cover rounded-2xl" src={src} fill sizes="(max-width: 1440px) 100vh" alt={alt} />
-</div>
-
-            </div>
+        <div className='text-white m-20 py-4 flex flex-row items-center justify-center bg-neutral-600 bg-opacity-25 rounded-lg'>
+        <div className='w-[50%]'>
+            <h1 className='text-white text-5xl mb-16'>
+                {title}
+            </h1>
+            <p className='text-white w-[80%] text-3xl leading-relaxed opacity-75'>{text}
+            </p>
+        </div>
+        <img src={src} className='w-[40%] rounded-xl' alt={alt} />
+    </div>
 
     )
 }

@@ -51,17 +51,18 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
             label: 'Overhours',
             data: users.map((user) => {return user.overhours}),
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            color: '#FFFFFF'
           },
         ],
       };
     console.log(users);
     
     return (
-        <div className='w-full h-full'>
+        <div className='p-6 bg-neutral-700'>
             <Bar
                 options={options}
                 data={data}
-                className='w-[70%] text-2xl'
+                className='w-[60%] mx-auto my-20 text-white'
             />
         </div>
     )
