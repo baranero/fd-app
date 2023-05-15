@@ -26,10 +26,14 @@ const Users = () => {
     const { data: Firefighters = [] } = useUserList()
 
     return (
-        <Layout>
-            <h2 className="text-white mt-5 text-center text-2xl">Users</h2>
-            <UserList data={Firefighters}/>
-        </Layout>
+        <div className="h-[100vh] w-full bg-[url('/images/background.jpg')] bg-fixed bg-no-repeat bg-center bg-cover">
+            <div className="bg-black w-full h-full lg:bg-opacity-50">
+                <Layout>
+                    <h2 className="text-white mt-5 text-center text-2xl">Users</h2>
+                    <UserList data={Firefighters}/>
+                </Layout>
+            </div>
+        </div>
     )
 }
 

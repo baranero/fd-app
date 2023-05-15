@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    @apply bg-neutral-700 h-full overflow-x-hidden
+    @apply h-full overflow-x-hidden;
 }
 
 #__next {

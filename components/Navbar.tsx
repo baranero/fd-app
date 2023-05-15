@@ -8,7 +8,6 @@ import { useCallback, useState } from "react"
 import MobileMenu from "./MobileMenu"
 import Link from 'next/link';
 
-const TOP_OFFSET = 66
 
 const Navbar = () => {
 
@@ -29,16 +28,18 @@ const Navbar = () => {
               items-center
               transition
               duration-500
-              bg-black
+
             ">
                 <div className="flex flex-row">
                     
-                    <Image
-                            src="/images/logo.svg"
-                            alt="Logo"
-                            width={120}
-                            height={100}
-                        />
+                    <Link href='/'>
+                        <Image
+                                src="/images/logo.svg"
+                                alt="Logo"
+                                width={120}
+                                height={100}
+                            />
+                    </Link>
                     <div className="
                         hidden
                         lg:flex
