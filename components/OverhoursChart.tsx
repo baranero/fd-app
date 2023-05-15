@@ -36,7 +36,7 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
           },
           title: {
             display: true,
-            text: 'Chart.js Bar Chart',
+            text: 'Overhours',
           },
         },
       };
@@ -48,7 +48,7 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
         labels,
         datasets: [
           {
-            label: 'Dataset 1',
+            label: 'Overhours',
             data: users.map((user) => {return user.overhours}),
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
           },
@@ -57,8 +57,12 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
     console.log(users);
     
     return (
-        <div>
-            <Bar options={options} data={data} />
+        <div className='w-full h-full'>
+            <Bar
+                options={options}
+                data={data}
+                className='w-[70%] text-2xl'
+            />
         </div>
     )
 }
