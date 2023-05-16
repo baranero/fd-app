@@ -16,7 +16,7 @@ interface UserListProps {
 
 
 
-const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
+const VacationsChart: React.FC<UserListProps> = ({ users }) => {
 
     ChartJS.defaults.color = '#FFF';
     ChartJS.defaults.borderColor = '#7a7a7a';
@@ -37,7 +37,7 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
           
           title: {
             display: true,
-            text: 'Overhours',
+            text: 'Vacations',
             font: {
               size: 30
             },
@@ -55,9 +55,9 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
         labels,
         datasets: [
           {
-            label: 'Overhours',
-            data: users.map((user) => {return user.overhours}),
-            backgroundColor: 'rgba(255, 99, 132, 0.9)',
+            label: 'Vacations',
+            data: users.map((user) => {return user.vacations}),
+            backgroundColor: 'rgba(50, 200, 132, 0.9)',
           },
         ],
       };
@@ -73,4 +73,4 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
     )
 }
 
-export default OverhoursChart
+export default VacationsChart

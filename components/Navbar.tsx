@@ -28,7 +28,8 @@ const Navbar = () => {
               items-center
               transition
               duration-500
-
+              bg-neutral-400
+              bg-opacity-20
             ">
                 <div className="flex flex-row">
                     

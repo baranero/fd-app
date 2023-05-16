@@ -24,7 +24,8 @@ export async function getServerSideProps(context: NextPageContext) {
 const Overhours = () => {
 
     const { data: Firefighters = [] } = useUserList()
-
+    console.log(Firefighters);
+    
     return (
         <Layout>
             <OverhoursChart users={Firefighters}/>
