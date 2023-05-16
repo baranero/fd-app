@@ -63,12 +63,12 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
       };
 
     return (
-        <div className='w-full bg-neutral-700 my-14 rounded-xl bg-opacity-50'>
-          <div className='p-6 lg:w-[70%] md:w-[85%] sm:w-[full] mx-auto '>
+        <div className='bg-neutral-700 my-14 rounded-xl bg-opacity-50'>
+          <div className='lg:p-6 md:p-6 lg:w-[70%] md:w-[85%] sm:w-full sm:p-1 lg:h-max sm:h-[800px] mx-auto '>
               <Bar
                   options={options}
                   data={data}
-                  className='w-full mx-auto my-20 text-white'
+                  className='w-full mx-10 my-20 text-white'
               />
           </div>
         </div>
