@@ -1,5 +1,6 @@
 import { isEmpty } from 'lodash';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { HiOutlineUserCircle } from 'react-icons/hi'
 
 interface UserListProps {
@@ -7,6 +8,8 @@ interface UserListProps {
 }
 
 const UserList: React.FC<UserListProps> = ({ data }) => {
+
+    const router = useRouter()
 
     if (isEmpty(data)) {
         return null
@@ -37,7 +40,7 @@ const UserList: React.FC<UserListProps> = ({ data }) => {
                         <p className='m-4 '><strong>Overhours:</strong> {user.overhours}</p>
                         <p className='m-4'><strong>Vacations:</strong> {user.vacations}</p>
                     </div>
-                    <button className='bg-gray-500 w-full rounded-b-md py-3 hover:bg-gray-700 cursor-pointer transition'>View profile</button>
+                    <button onClick={() =>  router.push(`/users/${user?.id}`)} className='bg-gray-500 w-full rounded-b-md py-3 hover:bg-gray-700 cursor-pointer transition'>View profile</button>
                 </div>
             )
                 
