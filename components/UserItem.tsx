@@ -25,7 +25,6 @@ const UserItem: React.FC<UserItemProps> = ({ data }) => {
         mx-5
         rounded-md
         shadow-lg
-        mx-auto
         mt-10
         w-[60vw]
         md:w-[25vw]
