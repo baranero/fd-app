@@ -30,7 +30,7 @@ export default function Home() {
 
     return (
             <div className="w-full bg-[url('/images/background.jpg')] bg-fixed bg-no-repeat bg-center bg-cover">
-                <div className="bg-black w-full h-full lg:bg-opacity-50">
+                <div className="bg-black w-full h-full pb-12 lg:bg-opacity-50">
                     <Layout>
                         <Description title='Work smart not hard!' text="Check how much vacation you have left or how many overtime hours you have already worked!" src="/images/schedule.jpg" alt="Schedule photo"/>
                         <Description title='Work smart not hard!' text="Check how much vacation you have left or how many overtime hours you have already worked!" src="/images/schedule.jpg" alt="Schedule photo"/>

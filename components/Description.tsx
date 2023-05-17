@@ -10,15 +10,15 @@ interface DescriptionProps {
 
 const Description: React.FC<DescriptionProps> = ({ title, text, src, alt }) => {
     return (
-        <div className='text-white m-20 py-4 flex flex-row items-center justify-center bg-neutral-600 bg-opacity-25 rounded-lg'>
-        <div className='w-[50%]'>
-            <h1 className='text-white text-5xl mb-16'>
+        <div className='text-white mt-10 py-4 flex flex-col items-center justify-center bg-neutral-600 bg-opacity-25 rounded-lg'>
+        <div className='w-full order-last px-3'>
+            <h1 className='text-white text-center text-4xl my-6'>
                 {title}
             </h1>
-            <p className='text-white w-[80%] text-3xl leading-relaxed opacity-75'>{text}
+            <p className='text-white text-center w-full text-2xl leading-relaxed opacity-75'>{text}
             </p>
         </div>
-        <img src={src} className='w-[40%] rounded-xl' alt={alt} />
+        <img src={src} className='w-full opacity-70' alt={alt} />
     </div>
 
     )

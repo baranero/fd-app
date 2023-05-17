@@ -63,13 +63,15 @@ const VacationsChart: React.FC<UserListProps> = ({ users }) => {
       };
 
     return (
-        <div className='p-6 bg-neutral-700 w-[80%] mx-auto my-14 rounded-xl bg-opacity-50'>
-            <Bar
-                options={options}
-                data={data}
-                className='w-[60%] mx-auto my-20 text-white'
-            />
-        </div>
+      <div className='bg-neutral-700 p-6 my-14 lg:mx-14 rounded-xl bg-opacity-50'>
+      <div className='w-[90%] h-[70vh] mx-auto flex items-center'>
+          <Bar
+              options={options}
+              data={data}
+              className='w-[80%] h-full text-white'
+          />
+      </div>
+    </div>
     )
 }
 
