@@ -7,9 +7,12 @@ import { signOut } from 'next-auth/react'
 import { useCallback, useState } from "react"
 import MobileMenu from "./MobileMenu"
 import Link from 'next/link';
+import useCurrentUser from "@/hooks/useCurrentUser"
 
 
 const Navbar = () => {
+
+    const { data: currentUser } = useCurrentUser();
 
     const [showMobileMenu, setShowMobileMenu] = useState(false)
 
@@ -70,7 +73,8 @@ const Navbar = () => {
                     <GiHamburgerMenu onClick={toggleMobileMenu} size={30} className={`text-white mx-4 transition ${showMobileMenu ? 'rotate-180' : 'rotate-0'}`}/>
                     
                 </div>
-                <div className="hidden lg:flex md:flex flex-row">
+                <div className="hidden lg:flex md:flex flex-row items-center">
+                    <p className="text-white mr-8">Hello, {currentUser?.name}</p>
                     <IoMdSettings size={30} className="text-white mx-1 cursor-pointer"/>
                     <BiLogOut onClick={() => signOut()} size={30} className="text-white mx-1 cursor-pointer"/>
                 </div>
