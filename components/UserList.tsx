@@ -16,9 +16,9 @@ const UserList: React.FC<UserListProps> = ({ data }) => {
     }
 
     return (
-        <div className='grid lg:grid-cols-5 md:grid-cols-2 sm:grid-cols-1 w-full justify-center'>
+        <div className='grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1  w-full justify-center'>
             {data.map((user) => (
-                <div className='bg-white group bg-opacity-80 rounded-md shadow-lg mx-auto mt-10 lg:w-72 sm:w-96 transition duration delay-300 h-max' key={user.id}>
+                <div className='bg-white group bg-opacity-80 rounded-md shadow-lg mx-auto mt-10 w-[60vw] md:w-[25vw] lg:w-[15vw] transition duration delay-300 h-max' key={user.id}>
                     <HiOutlineUserCircle className='mx-auto' size={150}/>
                     <p className='text-center my-2'>{user.name}</p>
                     <div className='

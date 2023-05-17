@@ -33,10 +33,12 @@ export default function Home() {
                 <div className="bg-black w-full h-full pb-12 lg:bg-opacity-50">
                     <Layout>
                         <Description title='Work smart not hard!' text="Check how much vacation you have left or how many overtime hours you have already worked!" src="/images/schedule.jpg" alt="Schedule photo"/>
-                        <Description title='Work smart not hard!' text="Check how much vacation you have left or how many overtime hours you have already worked!" src="/images/schedule.jpg" alt="Schedule photo"/>
+                        <Description title='Keep your team under control' text="All necessary elements visualized on charts." src="/images/chart.jpg" alt="Chart photo"/>
                     </Layout>
                 </div>
             </div>
     )
 
 }
+
+// Zdjęcie dodane przez Burak The Weekender: https://www.pexels.com/pl-pl/zdjecie/czarny-niebieski-i-czerwony-wykres-ilustracja-186461/
