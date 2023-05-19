@@ -13,7 +13,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ visible, data }) => {
         <div>
                         <div className='
                         '>
-                            <p className='m-4 '><strong>Overhours:</strong> {data?.overhours}</p>
+                            <p className='m-4 '><strong>Overhours:</strong> {data?.amount ? data?.amount : 0}</p>
                             <p className='m-4'><strong>Vacations:</strong> {data?.vacations}</p>
                         </div>
         </div>

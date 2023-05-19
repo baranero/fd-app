@@ -56,7 +56,7 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
         datasets: [
           {
             label: 'Overhours',
-            data: users.map((user) => {return user.overhours}),
+            data: users.map((user) => {return user.amount}),
             backgroundColor: 'rgba(255, 99, 132, 0.9)',
           },
         ],

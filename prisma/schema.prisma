@@ -10,9 +10,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Firefighters {
+  id String @id 
+  name String @unique
+  vacations Vacations[]
+  overhours Overhours[]
+  user User[]
+
+    @@map(name: "firefighters")
+}
+
+model Overhours {
+  id String @id
+  user Firefighters @relation(fields: [userId], references: [id])
+  userId String
+  amount Int @default(0)
+  date DateTime
+}
+
+model Vacations {
+  id String @id
+  user Firefighters @relation(fields: [userId], references: [id])
+  userId String
+  amount Int @default(0)
+  type String
+  date DateTime
+
+}
+
 model User {
   id            String        @id
-  name          String @unique
+  name          String  @unique
   image         String?
   email         String?   @unique
   emailVerified DateTime?
@@ -26,15 +54,7 @@ model User {
   @@map(name: "users")
 }
 
-model Firefighters {
-  id String @id 
-  name String @unique
-  vacations Int
-  overhours Int
-  user User[]
 
-    @@map(name: "firefighters")
-}
 
 model Account {
   id                 String        @id
