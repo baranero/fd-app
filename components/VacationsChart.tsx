@@ -6,17 +6,17 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 interface UserListProps {
-    users: Record<string, any>[];
+    holiday: Record<string, any>[];
+    additional: Record<string, any>[];
 }
 
 
 
-const VacationsChart: React.FC<UserListProps> = ({ users }) => {
+const VacationsChart: React.FC<UserListProps> = ({ holiday, additional }) => {
 
     ChartJS.defaults.color = '#FFF';
     ChartJS.defaults.borderColor = '#7a7a7a';
@@ -46,17 +46,30 @@ const VacationsChart: React.FC<UserListProps> = ({ users }) => {
             }
           },
         },
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true,
+          },
+        },
       };
       
-      const labels = users.map((user) => {return user.name})
+      const labels = holiday.map((user) => {return user.name})
 
-
+      
     const data = {
         labels,
         datasets: [
           {
-            label: 'Vacations',
-            data: users.map((user) => {return user.vacations}),
+            label: 'Vacations - Holiday',
+            data: holiday.map((user) => {return user.amount}),
+            backgroundColor: 'rgba(150, 200, 232, 0.9)',
+          },
+          {
+            label: 'Vacations - Additional',
+            data: additional.map((user) => {return user.amount}),
             backgroundColor: 'rgba(50, 200, 132, 0.9)',
           },
         ],
