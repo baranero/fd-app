@@ -3,22 +3,17 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { HiOutlineUserCircle } from 'react-icons/hi'
 import UserItem from './UserItem';
+import useUserList from '@/hooks/useUserList';
+import useOverhours from '@/hooks/useOverhours';
+import { outputOverhours } from '@/utils/outputOverhours';
 
-interface UserListProps {
-    data: Record<string, any>[]
-}
+const UserList = () => {
 
-const UserList: React.FC<UserListProps> = ({ data }) => {
-
+    const { data: Firefighters = [] } = useUserList()
     
-
-    if (isEmpty(data)) {
-        return null
-    }
-
     return (
         <div className='flex flex-wrap p-8 w-full justify-center'>
-            {data.map((user) => (
+            {Firefighters.map((user : Record<string, number>) => (
                 <UserItem key={user.id} data={user}/>
             )
                 

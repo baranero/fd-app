@@ -37,7 +37,7 @@ const UserItem: React.FC<UserItemProps> = ({ data }) => {
                 <div className="">
                         <HiOutlineUserCircle className='mx-auto' size={150}/>
                         <div className="mt-3 mb-5">
-                            <p className='mx-auto w-max flex'>{data.name}<AiOutlineDown onClick={toggleUserInfo} className={`ml-4 cursor-pointer hover:opacity-50 transition ${showUserInfo ? 'rotate-180' : 'rotate-0'}`} size={20}/></p> 
+                            <p className='mx-auto text-lg w-max flex'>{data.name}<AiOutlineDown onClick={toggleUserInfo} className={`ml-4 cursor-pointer hover:opacity-50 transition ${showUserInfo ? 'rotate-180' : 'rotate-0'}`} size={20}/></p> 
                         </div>
                         <UserInfo visible={showUserInfo} data={data}/>
                         <button onClick={() =>  router.push(`/users/${data?.id}`)} className='bg-gray-500 w-full rounded-b-md py-3 hover:bg-gray-700 cursor-pointer transition'>View profile</button>

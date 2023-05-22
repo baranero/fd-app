@@ -24,45 +24,12 @@ export async function getServerSideProps(context: NextPageContext) {
 
 const Users = () => {
 
-    const { data: Firefighters = [] } = useUserList()
-    const { data: Overhours = [] } = useOverhours()
-
-    let holder: any = {};
-
-    Overhours.forEach(function(d: {userId: string, amount: number}) {
-      if (holder.hasOwnProperty(d.userId)) {
-        
-        holder[d.userId] = holder[d.userId] + d.amount;
-      } else {
-        holder[d.userId] = d.amount;
-      }
-      
-    });
-    
-    let sumOverhours = [];
-    
-    for (let prop in holder) {
-        
-      sumOverhours.push({ userId: prop, amount: holder[prop] });
-    }
-
-    let mergedSumOverhours = [];
-
-    for(let i=0; i<Firefighters.length; i++) {
-        
-      mergedSumOverhours.push({
-       ...Firefighters[i],
-       ...(sumOverhours.find((itmInner) => itmInner.userId === Firefighters[i].id)),
-    }
-      );
-    }
-
     return (
         <div className="w-full bg-[url('/images/background.jpg')] bg-fixed bg-no-repeat bg-center bg-cover">
             <div className="bg-black w-full h-full lg:bg-opacity-50">
                 <Layout>
                     <h2 className="text-white mt-5 text-center text-2xl">Users</h2>
-                    <UserList data={mergedSumOverhours}/>
+                    <UserList />
                 </Layout>
             </div>
         </div>
