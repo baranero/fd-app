@@ -11,12 +11,12 @@ import {
 import { Bar } from 'react-chartjs-2';
 
 interface UserListProps {
-    users: Record<string, any>[];
+    overhours: Record<string, any>[];
 }
 
 
 
-const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
+const OverhoursChart: React.FC<UserListProps> = ({ overhours }) => {
 
     ChartJS.defaults.color = '#FFF';
     ChartJS.defaults.borderColor = '#7a7a7a';
@@ -48,7 +48,7 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
         },
       };
       
-      const labels = users.map((user) => {return user.name})
+      const labels = overhours.map((user) => {return user.name})
 
 
     const data = {
@@ -56,7 +56,7 @@ const OverhoursChart: React.FC<UserListProps> = ({ users }) => {
         datasets: [
           {
             label: 'Overhours',
-            data: users.map((user) => {return user.amount}),
+            data: overhours.map((user) => {return user.amount}),
             backgroundColor: 'rgba(255, 99, 132, 0.9)',
           },
         ],

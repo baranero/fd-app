@@ -18,12 +18,6 @@ export async function getServerSideProps(context: NextPageContext) {
             }
         }
     }
-
-    const over = prismadb.overhours.findMany({
-        where: {
-
-        }
-    })
   
     return {
         props: {}
@@ -35,10 +29,11 @@ const Overhours = () => {
     const { data: Firefighters = [] } = useUserList()
     const { data: Overhours = [] } = useOverhours()
     
+    const sumOverhours = outputOverhours(Overhours, Firefighters)
 
     return (
         <Layout>
-            <OverhoursChart users={outputOverhours(Overhours, Firefighters)}/>
+            <OverhoursChart overhours={sumOverhours}/>
         </Layout>
     )
 }
