@@ -2,7 +2,7 @@ import useSwr from 'swr'
 import fetcher from '@/lib/fetcher'
 
 const useVacations = () => {
-    const { data, error, isLoading } = useSwr('/api/vacations', fetcher, {
+    const { data, error, isLoading, mutate } = useSwr('/api/vacations', fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
@@ -11,7 +11,8 @@ const useVacations = () => {
     return {
         data,
         error,
-        isLoading
+        isLoading,
+        mutate
     }
 }
 

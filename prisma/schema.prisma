@@ -33,7 +33,6 @@ model Vacations {
   userId String
   amount Int @default(0)
   type String
-  date DateTime
 
 }
 

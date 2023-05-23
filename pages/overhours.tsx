@@ -55,7 +55,7 @@ const Overhours = () => {
         <Layout>
             <div className="bg-zinc-700 bg-opacity-70 mb-10 px-8 lg:px-16 py-16 self-center mx-auto mt-5 lg:rounded-md w-full lg:w-[80%]">
                 <h2 className="text-white text-4xl mb-8 text-center font-semibold">Add overhours</h2>
-                <form onSubmit={handleSubmit} className="flex flex-col mx-auto gap-4 w-[50%]">
+                <form onSubmit={handleSubmit} className="flex flex-col mx-auto gap-4 w-[90%] lg:w-[50%] md:w-[70%]">
                     <Input
                                         label="Name"
                                         name="name"
