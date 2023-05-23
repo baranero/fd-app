@@ -39,7 +39,7 @@ const Overhours = () => {
         event.preventDefault();
 
           try {
-            await axios.post('/api/overhours', {amount});
+            await axios.post('/api/overhours', {amount, name});
             mutate();
           } catch (error) {
             console.error('Error:', error);
