@@ -4,11 +4,8 @@ import serverAuth from "@/lib/serverAuth";
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { amount } = req.body
 
-  console.log(req.body);
   
-
   if (req.method === 'GET') {
     try {
     await serverAuth(req, res);
@@ -24,6 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   
   if (req.method === 'POST') {
    
+    const { amount } = req.body
 
     try {
       await serverAuth(req, res);

@@ -30,7 +30,7 @@ export async function getServerSideProps(context: NextPageContext) {
 const Overhours = () => {
 
     const [name, setName] = useState('')
-    const [hours, setHours] = useState(0)
+    const [amount, setAmount] = useState(0)
 
     const { data: Firefighters = [] } = useUserList()
     const { data: Overhours = [], mutate } = useOverhours()
@@ -39,7 +39,7 @@ const Overhours = () => {
         event.preventDefault();
 
           try {
-            await axios.post('/api/overhours', {amount: hours});
+            await axios.post('/api/overhours', {amount});
             mutate();
           } catch (error) {
             console.error('Error:', error);
@@ -67,10 +67,10 @@ const Overhours = () => {
                     <Input
                                         label="Amount"
                                         name="amount"
-                                        onChange={(event: any) => setHours(event.target.value)}
+                                        onChange={(event: any) => setAmount(event.target.value)}
                                         id="amount"
                                         type="number"
-                                        value={hours}
+                                        value={amount}
                                         min={0}
                     />
                     <button type="submit" className="bg-orange-600 py-3 text-white rounded-md w-full mt-10 hover:bg-orange-700 transition">Add</button>
