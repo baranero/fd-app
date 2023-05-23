@@ -79,7 +79,7 @@ const Vacations = () => {
                                         type="text"
                                         value={type}
                     />
-                    <button type="submit" className="bg-orange-600 py-3 text-white rounded-md w-full mt-10 hover:bg-orange-700 transition">Add</button>
+                    <button type="submit" className="bg-orange-600 py-3 text-white rounded-md w-full mt-5 hover:bg-orange-700 transition">Add</button>
                 </form>
             <VacationsChart holiday={holiday} additional={additional}/>
             </div>
