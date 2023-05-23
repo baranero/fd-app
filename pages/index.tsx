@@ -1,9 +1,7 @@
 import Description from '@/components/Description'
 import Layout from '@/components/Layout'
-import Navbar from '@/components/Navbar'
 import useCurrentUser from '@/hooks/useCurrentUser'
-import { signOut, getSession } from 'next-auth/react'
-import Image from 'next/image'
+import { getSession } from 'next-auth/react'
 import { NextPageContext } from 'next/types'
 
 export async function getServerSideProps(context: NextPageContext) {

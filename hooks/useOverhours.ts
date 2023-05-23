@@ -2,7 +2,7 @@ import useSwr from 'swr'
 import fetcher from '@/lib/fetcher'
 
 const useOverhours = () => {
-    const { data, error, isLoading } = useSwr('/api/overhours', fetcher, {
+    const { data, error, isLoading, mutate } = useSwr('/api/overhours', fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
@@ -11,7 +11,8 @@ const useOverhours = () => {
     return {
         data,
         error,
-        isLoading
+        isLoading,
+        mutate
     }
 }
 

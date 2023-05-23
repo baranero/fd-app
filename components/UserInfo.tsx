@@ -3,7 +3,6 @@ import useUserList from "@/hooks/useUserList";
 import useVacations from "@/hooks/useVacations";
 import { outputOverhours } from "@/utils/outputOverhours";
 import { outputVacations } from "@/utils/outputVacations";
-import { log } from "console";
 
 interface UserInfoProps {
     visible: boolean;

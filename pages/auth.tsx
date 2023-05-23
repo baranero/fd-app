@@ -1,7 +1,6 @@
 import axios from "axios"
 import Input from "@/components/Input"
 import Image from "next/image"
-
 import { useCallback, useState } from "react"
 import { signIn, getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
@@ -69,7 +68,7 @@ const Auth = () => {
     
 
     return (
-        <div className="relative h-full w-full bg-[url('/images/background.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
+        <div className="relative h-[100vh] w-full bg-[url('/images/background.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
             <div className="bg-black w-full h-full lg:bg-opacity-60">
                 <nav className="px-12 py-5">
                 <Image
@@ -86,6 +85,7 @@ const Auth = () => {
                         {variant === 'register' && 
                             <Input
                                 label="Username"
+                                name="username"
                                 onChange={(event: any) => setName(event.target.value)}
                                 id="name"
                                 type="text"
@@ -95,6 +95,7 @@ const Auth = () => {
                         
                             <Input
                                 label="Email"
+                                name="email"
                                 onChange={(event: any) => setEmail(event.target.value)}
                                 id="email"
                                 type="email"
@@ -102,6 +103,7 @@ const Auth = () => {
                             />
                             <Input
                                 label="Password"
+                                name="password"
                                 onChange={(event: any) => setPassword(event.target.value)}
                                 id="password"
                                 type="password"
