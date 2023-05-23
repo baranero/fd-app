@@ -59,7 +59,7 @@ const Users = () => {
                     <button type="submit" className="bg-orange-600 py-3 text-white rounded-md w-full mt-5 hover:bg-orange-700 transition">Add</button>
                 </form>
                 
-                    <h2 className="text-white mt-5 text-center text-2xl">Users</h2>
+                    <h2 className="text-white mt-10 text-center text-2xl">Users</h2>
                     <UserList />
                     </div>
                 </Layout>

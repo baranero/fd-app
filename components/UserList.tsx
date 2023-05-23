@@ -6,7 +6,7 @@ const UserList = () => {
     const { data: Firefighters = [] } = useUserList()
     
     return (
-        <div className='flex flex-wrap p-8 w-full justify-center'>
+        <div className='flex flex-wrap w-full justify-center'>
             {Firefighters.map((user : Record<string, number>) => (
                 <UserItem key={user.id} data={user}/>
             )

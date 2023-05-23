@@ -1,3 +1,5 @@
+import { AiOutlineDown } from "react-icons/ai";
+
 interface InputProps {
     id: string;
     name: string;
@@ -64,6 +66,7 @@ const Input: React.FC<InputProps> = ({
             >
                 {label}
             </label>
+            
         </div>
     )
 }
