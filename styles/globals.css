@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    @apply h-full overflow-y-scroll overflow-x-hidden bg-neutral-700;
+    @apply overflow-y-scroll overflow-x-hidden;
 }
 
 #__next {
@@ -11,6 +11,6 @@ body {
 }
 
 html {
-    @apply h-full;
+    @apply h-full bg-[url('/images/background.jpg')] bg-fixed bg-no-repeat bg-center bg-cover;
 }
 

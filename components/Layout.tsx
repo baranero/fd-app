@@ -8,7 +8,7 @@ type Props = {
 const Layout: React.FC<Props> = (props) => (
     <>
         <Navbar/>
-        <div className="pb-6">{props.children}</div>
+        <>{props.children}</>
     </>
 )
 

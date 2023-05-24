@@ -29,11 +29,13 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 const Overhours = () => {
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
+
 
   const { data: Firefighters = [] } = useUserList();
   const { data: Overhours = [], mutate } = useOverhours();
+
+  const [name, setName] = useState(Firefighters[0]?.name);
+  const [amount, setAmount] = useState(0);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();

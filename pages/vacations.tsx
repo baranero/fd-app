@@ -31,9 +31,9 @@ const Vacations = () => {
   const { data: Firefighters = [] } = useUserList();
   const { data: Vacations = [], mutate } = useVacations();
 
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
-  const [type, setType] = useState("");
+  const [name, setName] = useState(Firefighters[0]?.name);
+  const [amount, setAmount] = useState(0);
+  const [type, setType] = useState("Holiday");
 
   const holiday = outputVacations(Vacations, Firefighters, "Holiday");
   const additional = outputVacations(Vacations, Firefighters, "Additional");
@@ -54,9 +54,10 @@ const Vacations = () => {
   
 
   return (
+    
     <Layout>
       <div className="bg-zinc-700 bg-opacity-70 mb-10 px-8 lg:px-16 py-16 self-center mx-auto mt-5 lg:rounded-md w-full lg:w-[80%]">
-        <h2 className="text-white text-4xl mb-8 text-center font-semibold">
+      <h2 className="text-white text-4xl mb-8 text-center font-semibold">
           Add vacations
         </h2>
         <form
