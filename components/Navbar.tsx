@@ -4,13 +4,16 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { BiLogOut } from 'react-icons/bi'
 import { IoMdSettings } from 'react-icons/io'
 import { signOut } from 'next-auth/react'
-import { useCallback, useState } from "react"
+import React, { useCallback, useState } from "react"
 import MobileMenu from "./MobileMenu"
 import Link from 'next/link';
 import useCurrentUser from "@/hooks/useCurrentUser"
 
+interface NavbarProps {
+    openModal: () => void;
+}
 
-const Navbar = () => {
+const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
 
     const { data: currentUser } = useCurrentUser();
 
@@ -75,7 +78,7 @@ const Navbar = () => {
                 </div>
                 <div className="hidden lg:flex md:flex flex-row items-center">
                     <p className="text-white mr-8">Hello, {currentUser?.name}</p>
-                    <IoMdSettings size={30} className="text-white mx-1 cursor-pointer"/>
+                    <IoMdSettings onClick={openModal} size={30} className="text-white mx-1 cursor-pointer"/>
                     <BiLogOut onClick={() => signOut()} size={30} className="text-white mx-1 cursor-pointer"/>
                 </div>
             </div>
