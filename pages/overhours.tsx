@@ -49,7 +49,6 @@ const Overhours = () => {
   };
 
   const sumOverhours = outputOverhours(Overhours, Firefighters);
-console.log(name);
 
   return (
     <Layout>

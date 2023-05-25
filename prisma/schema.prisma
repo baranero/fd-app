@@ -43,7 +43,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   hashedPassword String?
-  isAdmin   Boolean @default(false)
+  isAdmin   String @default("false")
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
   firefighter Firefighters @relation(fields: [name], references: [name])

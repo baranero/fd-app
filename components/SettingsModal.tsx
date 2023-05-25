@@ -6,6 +6,7 @@ import SelectInput from "./SelectInput";
 import Input from "./Input";
 import { NextPageContext } from "next";
 import useRegisteredUsers from "@/hooks/useRegisteredUsers";
+import axios from "axios";
 
 
 interface SettingsModalProps {
@@ -16,14 +17,17 @@ interface SettingsModalProps {
 
 const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
 
-    const { data: registeredUsers = [] } = useRegisteredUsers()
+    const { data: registeredUsers = [], mutate } = useRegisteredUsers()
 
     const [isVisible, setIsVisible] = useState(!!visible)
     const [name, setName] = useState(registeredUsers[0]?.name);
-    const [admin, setAdmin] = useState(0)
+    const [admin, setAdmin] = useState("false")
     const [password, setPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [confirmedPassword, setConfirmedPassword] = useState('')
+
+    console.log(name, admin);
+    
 
     useEffect(() => {
         setIsVisible(!!visible)
@@ -35,6 +39,17 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
             onClose()
         }, 300)
     }, [onClose])
+
+    const handleAdminPerm = async (event: any) => {
+        event.preventDefault();
+        
+        try {
+          await axios.put("/api/usersList", { name, admin });
+          mutate();
+        } catch (error) {
+          console.error("Error:", error);
+        }
+    }
 
     if (!visible) {
         return null
@@ -102,9 +117,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
                         
 
                     </div>
-                    <div className="pb-12">
+                    <form onSubmit={handleAdminPerm} className="pb-12">
                         <h2 className="text-white text-2xl mb-8 text-center font-semibold">Set administrator permissions</h2>
-                        <div className="w-[70%] mx-auto h-32 flex flex-col justify-between">
+                        <div className="w-[70%] mx-auto h-48 flex flex-col justify-between">
                             <SelectInput
                                             id="name"
                                             name="name"
@@ -122,25 +137,21 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
                                             onChange={(event: any) => setAdmin(event.target.value)}
                                             value={admin}
                                             option={<>
-                                                <option value={1}>True</option>
-                                                <option value={0}>False</option>
+                                                <option value="true">True</option>
+                                                <option value="false">False</option>
                                                 </>}
                             />
+                            <button
+            type="submit"
+            className="bg-orange-600 py-3 text-white rounded-md w-full mt-5 hover:bg-orange-700 transition"
+          >
+            Set
+          </button>
                         </div>
-                    </div>
+                    </form>
                     <div className="pb-12">
                         <h2 className="text-white text-2xl mb-8 text-center font-semibold">Change password</h2>
-                        <div className="w-[70%] mx-auto h-72 flex flex-col justify-between">
-                            <SelectInput
-                                            id="name"
-                                            name="name"
-                                            label="Name"
-                                            onChange={(event: any) => setName(event.target.value)}
-                                            value={name}
-                                            option={registeredUsers.map((user: any) => {
-                                                return <option key={user.id} value={user.name} >{user.name}</option>
-                                            })}
-                            />
+                        <div className="w-[70%] mx-auto h-64 flex flex-col justify-between">
                             <Input
                                 label="Password"
                                 name="password"
@@ -165,6 +176,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
                                 type="password"
                                 value={confirmedPassword}
                             />
+                            <button
+            type="submit"
+            className="bg-orange-600 py-3 text-white rounded-md w-full mt-5 hover:bg-orange-700 transition"
+          >
+            Change
+          </button>
                         </div>
                     </div>
                 </div>

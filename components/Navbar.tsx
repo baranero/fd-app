@@ -27,7 +27,8 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
         <nav className="w-full z-40">
             <div className="
               px-4
-              md:px-16
+              md:px-3
+              lg:px-16
               py-6
               flex
               justify-between
@@ -77,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
                     
                 </div>
                 <div className="hidden lg:flex md:flex flex-row items-center">
-                    <p className="text-white mr-8">Hello, {currentUser?.name}</p>
+                    <p className="text-white mr-8 md:mr-4">Hello, {currentUser?.name}</p>
                     <IoMdSettings onClick={openModal} size={30} className="text-white mx-1 cursor-pointer"/>
                     <BiLogOut onClick={() => signOut()} size={30} className="text-white mx-1 cursor-pointer"/>
                 </div>
