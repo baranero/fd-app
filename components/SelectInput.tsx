@@ -64,6 +64,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
         onChange={onChange}
         value={value}
       >
+        <option value="">--Select an option--</option>
               {option}
       </select>
     </div>

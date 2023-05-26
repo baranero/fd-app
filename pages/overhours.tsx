@@ -37,7 +37,7 @@ const Overhours = () => {
   const { data: Firefighters = [] } = useUserList();
   const { data: Overhours = [], mutate } = useOverhours();
 
-  const [name, setName] = useState(Firefighters[0]?.name);
+  const [name, setName] = useState('');
   const [amount, setAmount] = useState(0);
 
   const columns = [
@@ -54,22 +54,42 @@ const Overhours = () => {
     },
   ];
 
+  console.log(name);
+  console.log(Firefighters[0]?.name);
+  
+  console.log(amount);
+  
+  
+
   const rows = mergeArr(Overhours, Firefighters);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    swal({
-      title: "Added!",
-      icon: "success",
+    if (!amount || amount === 0) {
+      swal({
+        title: "Warning!",
+        icon: "warning",
+        text: "Amount has to be greater than 0!"
+      })
       
-    })
-
-    try {
-      await axios.post("/api/overhours", { amount, name });
-      mutate();
-    } catch (error) {
-      console.error("Error:", error);
+      return
+    } else {
+      
+      swal({
+        title: "Added!",
+        icon: "success",
+        
+        
+      })
+  
+      try {
+        await axios.post("/api/overhours", { amount, name });
+        mutate();
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
+    setAmount(0)
   };
 
   const sumOverhours = outputOverhours(Overhours, Firefighters);
