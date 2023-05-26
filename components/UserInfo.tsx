@@ -17,12 +17,10 @@ const UserInfo: React.FC<UserInfoProps> = ({ visible, data }) => {
     const { data: Overhours = [] } = useOverhours()
 
     const overhours = outputOverhours(Overhours, Firefighters)
-    const holiday = outputVacations(Vacations, Firefighters, 'holiday')
-    const additional = outputVacations(Vacations, Firefighters, 'additional')
+    const holiday = outputVacations(Vacations, Firefighters, 'Holiday')
+    const additional = outputVacations(Vacations, Firefighters, 'Additional')
     
-    let index = +data.id - 1
-    
-    
+    let index = overhours.findIndex((item) => item.name === data.name)
 
     if (!visible) {
         return null

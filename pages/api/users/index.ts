@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const addedFirefighters = await prismadb.firefighters.create({
         data: {
-            id: (user.length + 1).toString(),
+            id: (Date.now() + Math.random()).toString(),
             name,
         }
       })

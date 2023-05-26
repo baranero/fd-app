@@ -13,6 +13,7 @@ import { useState } from "react";
 import swal from "sweetalert";
 import { DataGrid } from '@mui/x-data-grid';
 import { mergeArr } from "@/utils/mergeArrays";
+import { AiFillDelete } from "react-icons/ai";
 
 
 export async function getServerSideProps(context: NextPageContext) {
@@ -43,8 +44,16 @@ const Vacations = () => {
   const holiday = outputVacations(Vacations, Firefighters, "Holiday");
   const additional = outputVacations(Vacations, Firefighters, "Additional");
 
+  const handleDelete = async (id: string) => {
+    try {
+      await axios.delete(`/api/vacations/${id}`);
+      mutate();
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
     {
       field: "name",
       headerName: "Name",
@@ -59,6 +68,16 @@ const Vacations = () => {
       field: "type",
       headerName: "Type",
       flex: 0.7,
+    },
+    {
+      field: "action",
+      headerName: "Delete",
+      width: 100,
+      renderCell: (params: any) => (
+        <button className="mx-3" onClick={() => handleDelete(params.row.id)}>
+          <AiFillDelete size={25} />
+        </button>
+      ),
     },
   ];
 

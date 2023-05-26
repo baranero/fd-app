@@ -38,7 +38,7 @@ const Overhours = () => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
 
-  const handleDelete = async (id: any) => {
+  const handleDelete = async (id: string) => {
     try {
       await axios.delete(`/api/overhours/${id}`);
       mutate();
@@ -74,7 +74,7 @@ const Overhours = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
+
     {
       field: "name",
       headerName: "Name",
@@ -87,7 +87,7 @@ const Overhours = () => {
     },
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Delete",
       width: 100,
       renderCell: (params: any) => (
         <button className="mx-3" onClick={() => handleDelete(params.row.id)}>

@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const addedVacations = await prismadb.vacations.create({
         data: {
-            id: (vacations.length + 1).toString(),
+            id: (Date.now() + Math.random()).toString(),
             amount: +amount,
             type,
             userId: user!.id

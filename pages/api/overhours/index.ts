@@ -38,7 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const addedOverhours = await prismadb.overhours.create({
         data: {
-            id: (overhours.length + 1).toString(),
+            id: (Date.now() + Math.random()).toString(),
             amount: +amount,
             userId: user!.id
         }
