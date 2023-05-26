@@ -6,6 +6,7 @@ import axios from "axios"
 import { NextPageContext } from "next"
 import { getSession } from "next-auth/react"
 import { useState } from "react"
+import swal from "sweetalert";
 
 export async function getServerSideProps(context: NextPageContext) {
     const session = await getSession(context)
@@ -32,6 +33,11 @@ const Users = () => {
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
+        swal({
+            title: "Added!",
+            icon: "success",
+            
+          })
 
           try {
             await axios.post('/api/users', {name});

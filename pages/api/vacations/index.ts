@@ -6,6 +6,9 @@ import serverAuth from "@/lib/serverAuth";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     
   if (req.method === 'GET') {
+
+    console.log(req.body);
+    
     try {
     await serverAuth(req, res);
 

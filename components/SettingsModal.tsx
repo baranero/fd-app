@@ -7,6 +7,10 @@ import Input from "./Input";
 import { NextPageContext } from "next";
 import useRegisteredUsers from "@/hooks/useRegisteredUsers";
 import axios from "axios";
+import swal from "sweetalert";
+import useCurrentUser from "@/hooks/useCurrentUser";
+import { signIn } from "next-auth/react";
+
 
 
 interface SettingsModalProps {
@@ -17,7 +21,8 @@ interface SettingsModalProps {
 
 const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
 
-    const { data: registeredUsers = [], mutate } = useRegisteredUsers()
+    const { data: registeredUsers = [] } = useRegisteredUsers()
+    const { data: currentUser = [], mutate } = useCurrentUser()
 
     const [isVisible, setIsVisible] = useState(!!visible)
     const [name, setName] = useState(registeredUsers[0]?.name);
@@ -26,7 +31,6 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
     const [newPassword, setNewPassword] = useState('')
     const [confirmedPassword, setConfirmedPassword] = useState('')
 
-    console.log(name, admin);
     
 
     useEffect(() => {
@@ -42,10 +46,29 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
 
     const handleAdminPerm = async (event: any) => {
         event.preventDefault();
+        swal({
+            title: "Changed!",
+            icon: "success",
+            
+          })
         
         try {
           await axios.put("/api/usersList", { name, admin });
-          mutate();
+        } catch (error) {
+          console.error("Error:", error);
+        }
+    }
+
+    const handlePasswordChange = async (event: any) => {
+        event.preventDefault();
+        swal({
+            title: "Changed!",
+            icon: "success",
+            
+          })
+        
+        try {
+          await axios.put("/api/current", { password, newPassword });
         } catch (error) {
           console.error("Error:", error);
         }
@@ -149,7 +172,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
           </button>
                         </div>
                     </form>
-                    <div className="pb-12">
+                    <form onSubmit={handlePasswordChange} className="pb-12">
                         <h2 className="text-white text-2xl mb-8 text-center font-semibold">Change password</h2>
                         <div className="w-[70%] mx-auto h-64 flex flex-col justify-between">
                             <Input
@@ -183,7 +206,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
             Change
           </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

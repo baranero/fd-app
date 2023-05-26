@@ -21,9 +21,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       await serverAuth(req, res);
 
       const { name, admin } = req.body
-      console.log(typeof admin);
-      
-      
   
       const usersList = await prismadb.user.update({
         where: {

@@ -2,6 +2,7 @@ import Input from "@/components/Input";
 import Layout from "@/components/Layout";
 import SelectInput from "@/components/SelectInput";
 import VacationsChart from "@/components/VacationsChart";
+import DetailsList from "@/components/DetailsList";
 import useUserList from "@/hooks/useUserList";
 import useVacations from "@/hooks/useVacations";
 import { outputVacations } from "@/utils/outputVacations";
@@ -9,6 +10,10 @@ import axios from "axios";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 import { useState } from "react";
+import swal from "sweetalert";
+import { DataGrid } from '@mui/x-data-grid';
+import { mergeArr } from "@/utils/mergeArrays";
+
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -38,8 +43,34 @@ const Vacations = () => {
   const holiday = outputVacations(Vacations, Firefighters, "Holiday");
   const additional = outputVacations(Vacations, Firefighters, "Additional");
 
+  const columns = [
+    { field: "id", headerName: "ID", flex: 0.5 },
+    {
+      field: "name",
+      headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "amount",
+      headerName: "Amount",
+      flex: 0.5,
+    },
+    {
+      field: "type",
+      headerName: "Type",
+      flex: 0.7,
+    },
+  ];
+
+  const rows = mergeArr(Vacations, Firefighters);
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    swal({
+      title: "Added!",
+      icon: "success",
+      
+    })
 
     try {
       await axios.post("/api/vacations", { amount, name, type });
@@ -48,11 +79,7 @@ const Vacations = () => {
       console.error("Error:", error);
     }
   };
-
-  console.log(name);
-  console.log(type);
   
-
   return (
     
     <Layout>
@@ -104,6 +131,8 @@ const Vacations = () => {
           </button>
         </form>
         <VacationsChart holiday={holiday} additional={additional} />
+        <DetailsList columns={columns} rows={rows}/>
+        
       </div>
     </Layout>
   );

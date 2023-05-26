@@ -1,15 +1,18 @@
+import DetailsList from "@/components/DetailsList";
 import Input from "@/components/Input";
 import Layout from "@/components/Layout";
 import OverhoursChart from "@/components/OverhoursChart";
 import SelectInput from "@/components/SelectInput";
 import useOverhours from "@/hooks/useOverhours";
 import useUserList from "@/hooks/useUserList";
+import { mergeArr } from "@/utils/mergeArrays";
 import { outputOverhours } from "@/utils/outputOverhours";
 import axios from "axios";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 import { useState, useCallback } from "react";
 import { AiOutlineDown } from "react-icons/ai";
+import swal from "sweetalert";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -37,8 +40,29 @@ const Overhours = () => {
   const [name, setName] = useState(Firefighters[0]?.name);
   const [amount, setAmount] = useState(0);
 
+  const columns = [
+    { field: "id", headerName: "ID", flex: 0.5 },
+    {
+      field: "name",
+      headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "amount",
+      headerName: "Amount",
+      flex: 0.5,
+    },
+  ];
+
+  const rows = mergeArr(Overhours, Firefighters);
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    swal({
+      title: "Added!",
+      icon: "success",
+      
+    })
 
     try {
       await axios.post("/api/overhours", { amount, name });
@@ -89,6 +113,7 @@ const Overhours = () => {
         </form>
 
         <OverhoursChart overhours={sumOverhours} />
+        <DetailsList columns={columns} rows={rows}/>
       </div>
     </Layout>
   );

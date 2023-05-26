@@ -14,3 +14,32 @@ html {
     @apply h-full bg-[url('/images/background.jpg')] bg-fixed bg-no-repeat bg-center bg-cover;
 }
 
+.swal-modal {
+    background-color: gray;
+}
+
+.swal-title {
+    color: #FFF;
+}
+
+.swal-icon.swal-icon--success::after, .swal-icon.swal-icon--success::before, .swal-icon--success__hide-corners {
+    display: none;
+}
+
+.swal-button {
+    border: none;
+}
+
+.swal-button.swal-button--confirm {
+    background: #dd6b20;
+    border: none;
+}
+
+.swal-button.swal-button--confirm:hover {
+    background: #c05621;
+    border: none;
+}
+
+.MuiToolbar-root, .MuiSvgIcon-root, .MuiSvgIcon-root > path  {
+    color: #FFF;
+}
