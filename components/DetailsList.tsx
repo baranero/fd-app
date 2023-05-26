@@ -12,10 +12,6 @@ interface DetailsListProps {
 const DetailsList: React.FC<DetailsListProps> = ({ columns, rows }) => {
 
 
-
-
-  
-
   return (
     <div className="text-white">
       <DataGrid

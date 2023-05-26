@@ -11,7 +11,7 @@ import axios from "axios";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 import { useState, useCallback } from "react";
-import { AiOutlineDown } from "react-icons/ai";
+import { AiFillDelete, AiOutlineDown } from "react-icons/ai";
 import swal from "sweetalert";
 
 export async function getServerSideProps(context: NextPageContext) {
@@ -32,13 +32,46 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 const Overhours = () => {
-
-
   const { data: Firefighters = [] } = useUserList();
   const { data: Overhours = [], mutate } = useOverhours();
 
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
+
+  const handleDelete = async (id: any) => {
+    try {
+      await axios.delete(`/api/overhours/${id}`);
+      mutate();
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    if (!amount) {
+      swal({
+        title: "Warning!",
+        icon: "warning",
+        text: "Amount has to be greater than 0!",
+      });
+
+      return;
+    } else {
+      swal({
+        title: "Added!",
+        icon: "success",
+      });
+
+      try {
+        await axios.post("/api/overhours", { amount, name });
+        mutate();
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+    setAmount(0);
+  };
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
@@ -52,45 +85,19 @@ const Overhours = () => {
       headerName: "Amount",
       flex: 0.5,
     },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 100,
+      renderCell: (params: any) => (
+        <button className="mx-3" onClick={() => handleDelete(params.row.id)}>
+          <AiFillDelete size={25} />
+        </button>
+      ),
+    },
   ];
 
-  console.log(name);
-  console.log(Firefighters[0]?.name);
-  
-  console.log(amount);
-  
-  
-
   const rows = mergeArr(Overhours, Firefighters);
-
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-    if (!amount) {
-      swal({
-        title: "Warning!",
-        icon: "warning",
-        text: "Amount has to be greater than 0!"
-      })
-      
-      return
-    } else {
-      
-      swal({
-        title: "Added!",
-        icon: "success",
-        
-        
-      })
-  
-      try {
-        await axios.post("/api/overhours", { amount, name });
-        mutate();
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
-    setAmount(0)
-  };
 
   const sumOverhours = outputOverhours(Overhours, Firefighters);
 
@@ -111,10 +118,14 @@ const Overhours = () => {
             onChange={(event: any) => setName(event.target.value)}
             value={name}
             option={Firefighters.map((user: any) => {
-              return <option value={user.name} key={user.id}>{user.name}</option>;
+              return (
+                <option value={user.name} key={user.id}>
+                  {user.name}
+                </option>
+              );
             })}
           />
-          
+
           <Input
             label="Amount"
             name="amount"
@@ -133,7 +144,7 @@ const Overhours = () => {
         </form>
 
         <OverhoursChart overhours={sumOverhours} />
-        <DetailsList columns={columns} rows={rows}/>
+        <DetailsList columns={columns} rows={rows} />
       </div>
     </Layout>
   );
