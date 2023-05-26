@@ -65,7 +65,7 @@ const Overhours = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    if (!amount || amount === 0) {
+    if (!amount) {
       swal({
         title: "Warning!",
         icon: "warning",

@@ -36,7 +36,7 @@ const Vacations = () => {
   const { data: Firefighters = [] } = useUserList();
   const { data: Vacations = [], mutate } = useVacations();
 
-  const [name, setName] = useState(Firefighters[0]?.name);
+  const [name, setName] = useState('');
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState("Holiday");
 
@@ -66,6 +66,21 @@ const Vacations = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    if (!name) {
+      swal({
+        title: "Warning!",
+        icon: "warning",
+        text: "Select a user!"
+      })
+    } else if (!amount) {
+      swal({
+        title: "Warning!",
+        icon: "warning",
+        text: "Amount has to be greater than 0!"
+      })
+      
+      return
+    } else {
     swal({
       title: "Added!",
       icon: "success",
@@ -78,6 +93,8 @@ const Vacations = () => {
     } catch (error) {
       console.error("Error:", error);
     }
+    }
+    setAmount(0)
   };
   
   return (

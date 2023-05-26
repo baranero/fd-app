@@ -15,10 +15,10 @@ html {
 }
 
 .swal-modal {
-    background-color: gray;
+    background-color: rgb(61, 61, 61);
 }
 
-.swal-title {
+.swal-title, .swal-text {
     color: #FFF;
 }
 
