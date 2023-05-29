@@ -15,27 +15,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(500).end()
     }
 
+
     } else if (req.method === 'PUT') {
         try {
             const { currentUser } = await serverAuth(req, res)
             const { password, newPassword } = req.body
-            console.log(currentUser.hashedPassword);
 
+            if (!currentUser.hashedPassword) {
+                return res.status(400).json({ error: 'User password not available' })
+              }
 
-
+            const isCorrectPassword = await bcrypt.compare(password, currentUser.hashedPassword)
             
-            const passwordChange = prismadb.user.update({
-                where: {
-                    name: currentUser.name
-                },
-                data: {
+            if (!isCorrectPassword) {
+                return res.status(400).json({ error: 'Invalid password' })
+              }
 
-                }
-            })
-            
-            
+              const hashedNewPassword = await bcrypt.hash(newPassword, 12)
+
+
+  
+                const updatedUser = await prismadb.user.update({
+                    where: { id: currentUser.id },
+                    data: { hashedPassword: hashedNewPassword }
+                  })
+
     
-            return res.status(200).json(currentUser)
+            return res.status(200).json(updatedUser)
     } catch (error) {
         console.log(error);
         return res.status(500).end()
