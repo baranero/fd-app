@@ -35,7 +35,7 @@ export async function getServerSideProps(context: NextPageContext) {
 const Overhours = () => {
   const { data: Firefighters = [] } = useUserList();
   const { data: Overhours = [], mutate } = useOverhours();
-  const { data: currentUser } = useCurrentUser()
+  const { data: currentUser } = useCurrentUser();
 
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
@@ -112,7 +112,7 @@ const Overhours = () => {
     },
   ];
 
-  const columns = currentUser?.isAdmin === 'true' ? adminColumns : userColumns
+  const columns = currentUser?.isAdmin === "true" ? adminColumns : userColumns;
 
   const rows = mergeArr(Overhours, Firefighters);
 
@@ -121,44 +121,50 @@ const Overhours = () => {
   return (
     <Layout>
       <div className="bg-zinc-700 bg-opacity-70 mb-10 px-8 lg:px-16 py-8 self-center mx-auto mt-5 lg:rounded-md w-full lg:w-[80%]">
-        { currentUser?.isAdmin === 'true' ? <><h2 className="text-white text-4xl mb-8 text-center font-semibold">
-          Add overhours
-        </h2>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col mx-auto gap-4 w-[90%] lg:w-[50%] md:w-[70%]"
-        >
-          <SelectInput
-            id="name"
-            name="name"
-            label="Name"
-            onChange={(event: any) => setName(event.target.value)}
-            value={name}
-            option={Firefighters.map((user: any) => {
-              return (
-                <option value={user.name} key={user.id}>
-                  {user.name}
-                </option>
-              );
-            })}
-          />
+        {currentUser?.isAdmin === "true" ? (
+          <>
+            <h2 className="text-white text-4xl mb-8 text-center font-semibold">
+              Add overhours
+            </h2>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col mx-auto gap-4 w-[90%] lg:w-[50%] md:w-[70%]"
+            >
+              <SelectInput
+                id="name"
+                name="name"
+                label="Name"
+                onChange={(event: any) => setName(event.target.value)}
+                value={name}
+                option={Firefighters.map((user: any) => {
+                  return (
+                    <option value={user.name} key={user.id}>
+                      {user.name}
+                    </option>
+                  );
+                })}
+              />
 
-          <Input
-            label="Amount"
-            name="amount"
-            onChange={(event: any) => setAmount(event.target.value)}
-            id="amount"
-            type="text"
-            value={amount}
-            min={0}
-          />
-          <button
-            type="submit"
-            className="bg-orange-600 py-3 text-white rounded-md w-full mt-5 hover:bg-orange-700 transition"
-          >
-            Add
-          </button>
-        </form></> : <></>}
+              <Input
+                label="Amount"
+                name="amount"
+                onChange={(event: any) => setAmount(event.target.value)}
+                id="amount"
+                type="text"
+                value={amount}
+                min={0}
+              />
+              <button
+                type="submit"
+                className="bg-orange-600 py-3 text-white rounded-md w-full mt-5 hover:bg-orange-700 transition"
+              >
+                Add
+              </button>
+            </form>
+          </>
+        ) : (
+          <></>
+        )}
 
         <OverhoursChart overhours={sumOverhours} />
         <DetailsList columns={columns} rows={rows} />

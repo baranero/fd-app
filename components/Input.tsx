@@ -1,33 +1,33 @@
 import { AiOutlineDown } from "react-icons/ai";
 
 interface InputProps {
-    id: string;
-    name: string;
-    onChange: any;
-    value: string | number;
-    label: string;
-    type?: string;
-    min?: number;
+  id: string;
+  name: string;
+  onChange: any;
+  value: string | number;
+  label: string;
+  type?: string;
+  min?: number;
 }
 
-const Input: React.FC<InputProps> = ({ 
-    id,
-    name,
-    onChange,
-    value,
-    label,
-    type
- }) => {
-    return (
-        <div className="relative">
-            <input
-                id={id}
-                name={name}
-                onChange={onChange}
-                value={value}
-                type={type}
-                min={0}
-                className="
+const Input: React.FC<InputProps> = ({
+  id,
+  name,
+  onChange,
+  value,
+  label,
+  type,
+}) => {
+  return (
+    <div className="relative">
+      <input
+        id={id}
+        name={name}
+        onChange={onChange}
+        value={value}
+        type={type}
+        min={0}
+        className="
                     block
                     rounded-md
                     px-6
@@ -42,10 +42,10 @@ const Input: React.FC<InputProps> = ({
                     focus:ring-0
                     peer
                 "
-                placeholder=" "
-            />
-            <label
-                className="
+        placeholder=" "
+      />
+      <label
+        className="
                     absolute
                     text-md
                     text-zinc-400
@@ -62,13 +62,12 @@ const Input: React.FC<InputProps> = ({
                     peer-focus:scale-75
                     peer-focus:-translate-y-3
                 "
-                htmlFor={id}
-            >
-                {label}
-            </label>
-            
-        </div>
-    )
-}
+        htmlFor={id}
+      >
+        {label}
+      </label>
+    </div>
+  );
+};
 
-export default Input
+export default Input;

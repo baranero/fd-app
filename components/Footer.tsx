@@ -28,6 +28,11 @@ const Footer = () => {
                         <p className="text-white mx-2"><AiFillLinkedin size={30}/></p>
                     </Link>
                 </div>
+                <div className="flex text-white flex-row mt-3 w-full justify-center items-center">
+                Image by <a className="hover:text-gray-400" href="https://www.freepik.com/free-photo/top-view-desk-arrangement-with-notebook_16688666.htm#query=schedule%20draw&position=34&from_view=search&track=ais">Freepik</a>
+
+                </div>
+                
             </div>
 
         </nav>

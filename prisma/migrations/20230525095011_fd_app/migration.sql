@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "users" ALTER COLUMN "isAdmin" SET DEFAULT 'false',
-ALTER COLUMN "isAdmin" SET DATA TYPE TEXT;

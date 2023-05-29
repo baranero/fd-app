@@ -1,19 +1,19 @@
 interface SelectInputProps {
-    id: string;
-    name: string;
-    onChange: any;
-    value: string | number;
-    label: string;
-    option: any;
+  id: string;
+  name: string;
+  onChange: any;
+  value: string | number;
+  label: string;
+  option: any;
 }
 
 const SelectInput: React.FC<SelectInputProps> = ({
-    id,
-    name,
-    onChange,
-    value,
-    label,
-    option
+  id,
+  name,
+  onChange,
+  value,
+  label,
+  option,
 }) => {
   return (
     <div className="relative">
@@ -65,10 +65,10 @@ const SelectInput: React.FC<SelectInputProps> = ({
         value={value}
       >
         <option value="">-Select-</option>
-              {option}
+        {option}
       </select>
     </div>
   );
 };
 
-export default SelectInput
+export default SelectInput;

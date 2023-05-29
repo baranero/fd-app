@@ -10,25 +10,22 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = (props) => {
-  const { isOpen, closeModal, openModal } = useSettingsModal()
+  const { isOpen, closeModal, openModal } = useSettingsModal();
 
   const handleOpenModal = useCallback(() => {
-    mutate
-    openModal()
-}, [openModal])
+    mutate;
+    openModal();
+  }, [openModal]);
   return (
     <>
-    <div className="pb-10 min-h-screen" >
-        <Navbar openModal={handleOpenModal}/>
+      <div className="pb-10 min-h-screen">
+        <Navbar openModal={handleOpenModal} />
         <SettingsModal visible={isOpen} onClose={closeModal} />
         <>{props.children}</>
-        
-    </div>
-    <Footer/>
+      </div>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-
-
-export default Layout
+export default Layout;

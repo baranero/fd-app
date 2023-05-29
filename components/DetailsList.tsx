@@ -4,14 +4,11 @@ import { mergeArr } from "@/utils/mergeArrays";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
 interface DetailsListProps {
-    columns: GridColDef[],
-    rows: Record<string, any>[];
-
+  columns: GridColDef[];
+  rows: Record<string, any>[];
 }
 
 const DetailsList: React.FC<DetailsListProps> = ({ columns, rows }) => {
-
-
   return (
     <div className="text-white">
       <DataGrid
@@ -19,7 +16,7 @@ const DetailsList: React.FC<DetailsListProps> = ({ columns, rows }) => {
         style={{
           color: "#FFF",
           background: "rgba(64, 64, 64)",
-          padding: '0 20px',
+          padding: "0 20px",
           margin: "0 auto",
         }}
         rows={rows}
@@ -35,4 +32,4 @@ const DetailsList: React.FC<DetailsListProps> = ({ columns, rows }) => {
   );
 };
 
-export default DetailsList
+export default DetailsList;

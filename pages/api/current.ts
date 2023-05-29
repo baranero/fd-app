@@ -1,50 +1,51 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import bcrypt, { compare } from 'bcrypt'
+import { NextApiRequest, NextApiResponse } from "next";
+import bcrypt, { compare } from "bcrypt";
 
-import serverAuth from '@/lib/serverAuth'
-import Credentials from 'next-auth/providers/credentials'
+import serverAuth from "@/lib/serverAuth";
+import Credentials from "next-auth/providers/credentials";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method === 'GET') {
-        try {
-            const { currentUser } = await serverAuth(req, res)
-    
-            return res.status(200).json(currentUser)
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (req.method === "GET") {
+    try {
+      const { currentUser } = await serverAuth(req, res);
+
+      return res.status(200).json(currentUser);
     } catch (error) {
-        console.log(error);
-        return res.status(500).end()
+      console.log(error);
+      return res.status(500).end();
     }
+  } else if (req.method === "PUT") {
+    try {
+      const { currentUser } = await serverAuth(req, res);
+      const { password, newPassword } = req.body;
 
+      if (!currentUser.hashedPassword) {
+        return res.status(400).json({ error: "User password not available" });
+      }
 
-    } else if (req.method === 'PUT') {
-        try {
-            const { currentUser } = await serverAuth(req, res)
-            const { password, newPassword } = req.body
+      const isCorrectPassword = await bcrypt.compare(
+        password,
+        currentUser.hashedPassword
+      );
 
-            if (!currentUser.hashedPassword) {
-                return res.status(400).json({ error: 'User password not available' })
-              }
+      if (!isCorrectPassword) {
+        return res.status(400).json({ error: "Invalid password" });
+      }
 
-            const isCorrectPassword = await bcrypt.compare(password, currentUser.hashedPassword)
-            
-            if (!isCorrectPassword) {
-                return res.status(400).json({ error: 'Invalid password' })
-              }
+      const hashedNewPassword = await bcrypt.hash(newPassword, 12);
 
-              const hashedNewPassword = await bcrypt.hash(newPassword, 12)
+      const updatedUser = await prismadb.user.update({
+        where: { id: currentUser.id },
+        data: { hashedPassword: hashedNewPassword },
+      });
 
-
-  
-                const updatedUser = await prismadb.user.update({
-                    where: { id: currentUser.id },
-                    data: { hashedPassword: hashedNewPassword }
-                  })
-
-    
-            return res.status(200).json(updatedUser)
+      return res.status(200).json(updatedUser);
     } catch (error) {
-        console.log(error);
-        return res.status(500).end()
+      console.log(error);
+      return res.status(500).end();
     }
-    }
+  }
 }
