@@ -25,8 +25,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
     const { data: currentUser = [], mutate } = useCurrentUser()
 
     const [isVisible, setIsVisible] = useState(!!visible)
-    const [name, setName] = useState(registeredUsers[0]?.name);
-    const [admin, setAdmin] = useState("false")
+    const [name, setName] = useState('');
+    const [admin, setAdmin] = useState('')
     const [password, setPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [confirmedPassword, setConfirmedPassword] = useState('')
