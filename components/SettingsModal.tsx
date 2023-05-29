@@ -141,7 +141,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
                         
 
                     </div>
-                    <form onSubmit={handleAdminPerm} className="pb-12">
+                    {currentUser?.isAdmin === 'true' ? <form onSubmit={handleAdminPerm} className="pb-12">
                         <h2 className="text-white text-2xl mb-8 text-center font-semibold">Set administrator permissions</h2>
                         <div className="w-[70%] mx-auto h-48 flex flex-col justify-between">
                             <SelectInput
@@ -172,7 +172,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
             Set
           </button>
                         </div>
-                    </form>
+                    </form> : <></>}
                     <form onSubmit={handlePasswordChange} className="pb-12">
                         <h2 className="text-white text-2xl mb-8 text-center font-semibold">Change password</h2>
                         <div className="w-[70%] mx-auto h-64 flex flex-col justify-between">

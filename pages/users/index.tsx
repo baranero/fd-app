@@ -1,6 +1,7 @@
 import Input from "@/components/Input";
 import Layout from "@/components/Layout";
 import UserList from "@/components/UserList";
+import useCurrentUser from "@/hooks/useCurrentUser";
 import useUserList from "@/hooks/useUserList";
 import axios from "axios";
 import { NextPageContext } from "next";
@@ -27,6 +28,7 @@ export async function getServerSideProps(context: NextPageContext) {
 
 const Users = () => {
   const { mutate } = useUserList();
+  const { data: currentUser } = useCurrentUser()
 
   const [name, setName] = useState("");
 
@@ -57,7 +59,7 @@ const Users = () => {
   return (
     <Layout>
       <div className="bg-zinc-700 h-full bg-opacity-70 px-8 lg:px-16 py-8 self-center mx-auto mt-5 lg:rounded-md w-full lg:w-[80%]">
-        <h2 className="text-white text-4xl mb-8 text-center font-semibold">
+        {currentUser?.isAdmin === 'true' ? <><h2 className="text-white text-4xl mb-8 text-center font-semibold">
           Add user
         </h2>
         <form
@@ -78,7 +80,7 @@ const Users = () => {
           >
             Add
           </button>
-        </form>
+        </form></> : <></>}
 
         <h2 className="text-white mt-10 text-center text-2xl">Users</h2>
         <UserList />

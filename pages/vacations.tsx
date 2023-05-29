@@ -57,7 +57,7 @@ const Vacations = () => {
     }
   };
 
-  const columns = [
+  const adminColumns = [
     {
       field: "name",
       headerName: "Name",
@@ -84,6 +84,26 @@ const Vacations = () => {
       ),
     },
   ];
+
+   const userColumns = [
+    {
+      field: "name",
+      headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "amount",
+      headerName: "Amount",
+      flex: 0.5,
+    },
+    {
+      field: "type",
+      headerName: "Type",
+      flex: 0.7,
+    },
+  ];
+
+    const columns = currentUser?.isAdmin === 'true' ? adminColumns : userColumns
 
   const rows = mergeArr(Vacations, Firefighters);
 
