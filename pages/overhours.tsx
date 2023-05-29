@@ -3,6 +3,7 @@ import Input from "@/components/Input";
 import Layout from "@/components/Layout";
 import OverhoursChart from "@/components/OverhoursChart";
 import SelectInput from "@/components/SelectInput";
+import useCurrentUser from "@/hooks/useCurrentUser";
 import useOverhours from "@/hooks/useOverhours";
 import useUserList from "@/hooks/useUserList";
 import { mergeArr } from "@/utils/mergeArrays";
@@ -34,6 +35,7 @@ export async function getServerSideProps(context: NextPageContext) {
 const Overhours = () => {
   const { data: Firefighters = [] } = useUserList();
   const { data: Overhours = [], mutate } = useOverhours();
+  const { data: currentUser } = useCurrentUser()
 
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
@@ -73,8 +75,7 @@ const Overhours = () => {
     setAmount(0);
   };
 
-  const columns = [
-
+  const adminColumns = [
     {
       field: "name",
       headerName: "Name",
@@ -85,6 +86,7 @@ const Overhours = () => {
       headerName: "Amount",
       flex: 0.5,
     },
+
     {
       field: "action",
       headerName: "Delete",
@@ -97,14 +99,29 @@ const Overhours = () => {
     },
   ];
 
+  const userColumns = [
+    {
+      field: "name",
+      headerName: "Name",
+      flex: 1,
+    },
+    {
+      field: "amount",
+      headerName: "Amount",
+      flex: 0.5,
+    },
+  ];
+
+  const columns = currentUser?.isAdmin === 'true' ? adminColumns : userColumns
+
   const rows = mergeArr(Overhours, Firefighters);
 
   const sumOverhours = outputOverhours(Overhours, Firefighters);
 
   return (
     <Layout>
-      <div className="bg-zinc-700 bg-opacity-70 mb-10 px-8 lg:px-16 py-16 self-center mx-auto mt-5 lg:rounded-md w-full lg:w-[80%]">
-        <h2 className="text-white text-4xl mb-8 text-center font-semibold">
+      <div className="bg-zinc-700 bg-opacity-70 mb-10 px-8 lg:px-16 py-8 self-center mx-auto mt-5 lg:rounded-md w-full lg:w-[80%]">
+        { currentUser?.isAdmin === 'true' ? <><h2 className="text-white text-4xl mb-8 text-center font-semibold">
           Add overhours
         </h2>
         <form
@@ -141,7 +158,7 @@ const Overhours = () => {
           >
             Add
           </button>
-        </form>
+        </form></> : <></>}
 
         <OverhoursChart overhours={sumOverhours} />
         <DetailsList columns={columns} rows={rows} />

@@ -2,22 +2,21 @@ import axios from 'axios';
 import UserItem from './UserItem';
 import useUserList from '@/hooks/useUserList';
 import Swal from 'sweetalert2';
-import swal from 'sweetalert';
 
 const UserList = () => {
 
     const { data: Firefighters = [], mutate } = useUserList()
 
-    const handleDelete = async (id: string) => {
+    const handleDelete = async (id: string, name: string) => {
       try {
-        await axios.delete(`/api/users/${id}`);
+        await axios.delete(`/api/users/${id}`, {data: {name}});
         mutate();
       } catch (error) {
         console.error("Error:", error);
       }
     };
 
-    const userAlert = (id: string) => {
+    const userAlert = (id: string, name: string) => {
       Swal.fire({
           title: 'Are You sure?',
           showConfirmButton: true,
@@ -29,7 +28,7 @@ const UserList = () => {
       ).then((result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
-              handleDelete(id)
+              handleDelete(id, name)
               Swal.fire('User deleted', '', 'success');
 
           } else
@@ -42,7 +41,7 @@ const UserList = () => {
         <div className='flex flex-wrap w-full justify-center'>
           
             {Firefighters.map((user : Record<string, number>) => (
-                <UserItem key={user.id} data={user} onHandleDelete={handleDelete} deleteButton={userAlert}/>
+                <UserItem key={user.id} data={user} deleteButton={userAlert}/>
             )
                 
             )}

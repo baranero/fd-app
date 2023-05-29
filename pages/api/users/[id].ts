@@ -7,6 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'DELETE') {
     const id = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id;
+    const name = Array.isArray(req.query.name) ? req.query.name[0] : req.query.name;
     console.log(req.query);
     try {
       await serverAuth(req, res);
@@ -22,6 +23,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           userId: id,
         },
       });
+
+      // await prismadb.user.delete({
+      //   where: {
+      //     name: name,
+      //   },
+      // });
   
       const deletedUsers = await prismadb.firefighters.delete({
         where: {

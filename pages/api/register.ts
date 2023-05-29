@@ -18,6 +18,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
         })
 
+        const userId: any = await prismadb.firefighters.findUnique({
+            where: {
+                name: name
+            }
+        })
+
+        const sameId: any = userId.id
+
         if (existingUser) {
             return res.status(422).json({ error: 'Email taken' })
         }
@@ -26,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const user = await prismadb.user.create({
             data: {
-                id: (Date.now() + Math.random()).toString(),
+                id: sameId,
                 email,
                 name,
                 hashedPassword,

@@ -54,6 +54,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
         
         try {
           await axios.put("/api/usersList", { name, admin });
+          mutate()
         } catch (error) {
           console.error("Error:", error);
         }

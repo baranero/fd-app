@@ -9,11 +9,12 @@ import { outputVacations } from "@/utils/outputVacations";
 import axios from "axios";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import swal from "sweetalert";
 import { DataGrid } from '@mui/x-data-grid';
 import { mergeArr } from "@/utils/mergeArrays";
 import { AiFillDelete } from "react-icons/ai";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 
 export async function getServerSideProps(context: NextPageContext) {
@@ -36,7 +37,10 @@ export async function getServerSideProps(context: NextPageContext) {
 const Vacations = () => {
   const { data: Firefighters = [] } = useUserList();
   const { data: Vacations = [], mutate } = useVacations();
+  const { data: currentUser } = useCurrentUser()
 
+  const [admin, setAdmin] = useState(false)
+  
   const [name, setName] = useState('');
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState("Holiday");
@@ -119,11 +123,11 @@ const Vacations = () => {
   return (
     
     <Layout>
-      <div className="bg-zinc-700 bg-opacity-70 mb-10 px-8 lg:px-16 py-16 self-center mx-auto mt-5 lg:rounded-md w-full lg:w-[80%]">
-      <h2 className="text-white text-4xl mb-8 text-center font-semibold">
+      <div className="bg-zinc-700 bg-opacity-70 mb-10 px-8 lg:px-16 py-8 self-center mx-auto mt-5 lg:rounded-md w-full lg:w-[80%]">
+      
+        { currentUser?.isAdmin === 'true' ? <><h2 className="text-white text-4xl mb-8 text-center font-semibold">
           Add vacations
-        </h2>
-        <form
+        </h2><form
           onSubmit={handleSubmit}
           className="flex flex-col mx-auto gap-4 w-[90%] lg:w-[50%] md:w-[70%]"
         >
@@ -165,7 +169,7 @@ const Vacations = () => {
           >
             Add
           </button>
-        </form>
+        </form></> : <></>}
         <VacationsChart holiday={holiday} additional={additional} />
         <DetailsList columns={columns} rows={rows}/>
         
