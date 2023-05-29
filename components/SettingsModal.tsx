@@ -62,17 +62,34 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
 
     const handlePasswordChange = async (event: any) => {
         event.preventDefault();
-        swal({
-            title: "Changed!",
-            icon: "success",
+
+        if (newPassword !== confirmedPassword) {
+            swal({
+                title: "Warning!",
+                icon: "warning",
+                text: "Passwords are different"
+              })
+        } else if (password === newPassword) {
+            swal({
+                title: "Warning!",
+                icon: "warning",
+                text: "The old password is the same as the new one"
+              })
+        } else {
+            swal({
+                title: "Changed!",
+                icon: "success",
+                
+              })
             
-          })
-        
-        try {
-          await axios.put("/api/current", { password, newPassword });
-        } catch (error) {
-          console.error("Error:", error);
+            try {
+              await axios.put("/api/current", { password, newPassword });
+            } catch (error) {
+              console.error("Error:", error);
+            }
         }
+
+
     }
 
     if (!visible) {
