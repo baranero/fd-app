@@ -9,9 +9,10 @@ import { mutate } from "swr";
 interface UserItemProps {
     data: Record<string, any>;
     onHandleDelete: (id: string) => void;
+    deleteButton: (id: string) => void;
 }
 
-const UserItem: React.FC<UserItemProps> = ({ data, onHandleDelete }) => {
+const UserItem: React.FC<UserItemProps> = ({ data, onHandleDelete, deleteButton }) => {
     
     const router = useRouter()
 
@@ -45,7 +46,7 @@ const UserItem: React.FC<UserItemProps> = ({ data, onHandleDelete }) => {
                             <p className='mx-auto text-lg w-max flex'>{data.name}<AiOutlineDown onClick={toggleUserInfo} className={`ml-4 cursor-pointer hover:opacity-50 transition ${showUserInfo ? 'rotate-180' : 'rotate-0'}`} size={20}/></p> 
                         </div>
                         <UserInfo visible={showUserInfo} data={data}/>
-                        <button onClick={() => onHandleDelete(data.id)} className='bg-gray-500 w-full rounded-b-md py-3 hover:bg-gray-700 cursor-pointer transition'>Delete</button>
+                        <button onClick={() => deleteButton(data.id)} className='bg-gray-500 w-full rounded-b-md py-3 hover:bg-gray-700 cursor-pointer transition'>Delete</button>
                     </div>
             </div>
         </div>

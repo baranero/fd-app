@@ -19,7 +19,7 @@ const DetailsList: React.FC<DetailsListProps> = ({ columns, rows }) => {
         style={{
           color: "#FFF",
           background: "rgba(64, 64, 64)",
-
+          padding: '0 20px',
           margin: "0 auto",
         }}
         rows={rows}
@@ -30,7 +30,6 @@ const DetailsList: React.FC<DetailsListProps> = ({ columns, rows }) => {
           },
         }}
         pageSizeOptions={[5, 10]}
-        checkboxSelection
       />
     </div>
   );
