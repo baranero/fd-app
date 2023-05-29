@@ -4,10 +4,10 @@ import serverAuth from "@/lib/serverAuth";
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    
+  await serverAuth(req, res);
   if (req.method === 'GET') {
     try {
-    await serverAuth(req, res);
+
 
     const overhours = await prismadb.overhours.findMany();
 
@@ -25,7 +25,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     
     try {
-      await serverAuth(req, res);
       const overhours = await prismadb.overhours.findMany();
 
       const user = await prismadb.firefighters.findUnique({

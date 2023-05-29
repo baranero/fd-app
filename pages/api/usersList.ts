@@ -4,10 +4,10 @@ import serverAuth from "@/lib/serverAuth";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
-
+  await serverAuth(req, res);
   if (req.method === 'GET') {
     try {
-    await serverAuth(req, res);
+
 
     const usersList = await prismadb.user.findMany();
 
@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   } else if (req.method === 'PUT') {
     try {
-      await serverAuth(req, res);
+
 
       const { name, admin } = req.body
   

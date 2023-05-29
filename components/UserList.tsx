@@ -2,10 +2,12 @@ import axios from 'axios';
 import UserItem from './UserItem';
 import useUserList from '@/hooks/useUserList';
 import Swal from 'sweetalert2';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 const UserList = () => {
 
     const { data: Firefighters = [], mutate } = useUserList()
+    const { data: currentUser } = useCurrentUser()
 
     const handleDelete = async (id: string, name: string) => {
       try {
@@ -27,7 +29,9 @@ const UserList = () => {
       }
       ).then((result) => {
           /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
+          if (currentUser.name === name) {
+            Swal.fire('You can not delete yourself!', '', 'error')
+          } else if (result.isConfirmed) {
               handleDelete(id, name)
               Swal.fire('User deleted', '', 'success');
 

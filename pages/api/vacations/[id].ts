@@ -4,12 +4,11 @@ import serverAuth from "@/lib/serverAuth";
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
+  await serverAuth(req, res);
   if (req.method === 'DELETE') {
     const id = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id;
     console.log(req.query);
     try {
-      await serverAuth(req, res);
 
       
 

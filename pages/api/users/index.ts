@@ -3,10 +3,10 @@ import prismadb from '@/lib/prismadb';
 import serverAuth from "@/lib/serverAuth";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
+  await serverAuth(req, res);
   if (req.method === 'GET') {
     try {
-    await serverAuth(req, res);
+    
 
     const firefighters = await prismadb.firefighters.findMany();
 
@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     
     try {
-      await serverAuth(req, res);
+     
 
       const user = await prismadb.firefighters.findMany()
       

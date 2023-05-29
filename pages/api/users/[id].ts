@@ -24,11 +24,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
       });
 
-      // await prismadb.user.delete({
-      //   where: {
-      //     name: name,
-      //   },
-      // });
+      await prismadb.user.deleteMany({
+        where: {
+          id: id,
+        },
+      });
   
       const deletedUsers = await prismadb.firefighters.delete({
         where: {
