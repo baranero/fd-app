@@ -31,6 +31,9 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [variant, setVariant] = useState("login");
 
+  const trimmedName = name.trimEnd()
+  const trimmedEmail = email.trimEnd()
+
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) =>
       currentVariant === "login" ? "register" : "login"
@@ -75,8 +78,8 @@ const Auth = () => {
     
     try {
       await axios.post("/api/register", {
-        email,
-        name,
+        email: trimmedEmail,
+        name: trimmedName,
         password,
       });
       
@@ -85,7 +88,7 @@ const Auth = () => {
 
       console.log(error);
     }
-  }, [email, name, password, login]);
+  }, [password, login, trimmedEmail, trimmedName]);
 
   return (
     <div className="relative h-[100vh] w-full bg-[url('/images/background.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
@@ -103,7 +106,7 @@ const Auth = () => {
                 <Input
                   label="Username"
                   name="username"
-                  onChange={(event: any) => setName(event.target.value.trim())}
+                  onChange={(event: any) => setName(event.target.value)}
                   id="name"
                   type="text"
                   value={name}

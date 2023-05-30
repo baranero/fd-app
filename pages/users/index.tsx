@@ -30,7 +30,9 @@ const Users = () => {
   const { mutate } = useUserList();
   const { data: currentUser } = useCurrentUser();
 
-  const [name, setName] = useState("");
+  const [name, setName] = useState("")
+
+  const trimmedName = name.trimEnd();
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -47,7 +49,7 @@ const Users = () => {
       });
 
       try {
-        await axios.post("/api/users", { name });
+        await axios.post("/api/users", { name: trimmedName });
         mutate();
       } catch (error) {
         console.error("Error:", error);
@@ -71,7 +73,7 @@ const Users = () => {
               <Input
                 label="Name"
                 name="name"
-                onChange={(event: any) => setName(event.target.value.trim())}
+                onChange={(event: any) => setName(event.target.value)}
                 id="name"
                 type="select"
                 value={name}
