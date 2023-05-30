@@ -4,6 +4,7 @@ import { compare } from "bcrypt";
 
 import prismadb from "@/lib/prismadb";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import swal from "sweetalert";
 
 export const authOptions: AuthOptions = {
   providers: [

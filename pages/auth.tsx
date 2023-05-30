@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { NextPageContext } from "next";
+import swal from "sweetalert";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -37,30 +38,41 @@ const Auth = () => {
   }, []);
 
   const login = useCallback(async () => {
+
     try {
-      await signIn("credentials", {
+      const result = await signIn("credentials", {
         email,
         password,
         redirect: false,
         callbackUrl: "/",
       });
-
+      if (result?.error) {
+        throw new Error(result.error);
+      }
+  
       router.push("/");
     } catch (error) {
       console.log(error);
+      swal({
+        title: "Warning!",
+        icon: "warning",
+        text: "Login failed. Please check your email and password.",
+      });
     }
   }, [email, password, router]);
 
   const register = useCallback(async () => {
+    
     try {
       await axios.post("/api/register", {
         email,
         name,
         password,
       });
-
+      
       login();
     } catch (error) {
+
       console.log(error);
     }
   }, [email, name, password, login]);

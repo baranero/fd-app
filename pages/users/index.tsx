@@ -71,7 +71,7 @@ const Users = () => {
               <Input
                 label="Name"
                 name="name"
-                onChange={(event: any) => setName(event.target.value)}
+                onChange={(event: any) => setName(event.target.value.trim())}
                 id="name"
                 type="select"
                 value={name}

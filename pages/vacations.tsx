@@ -151,7 +151,7 @@ const Vacations = () => {
                 id="name"
                 name="name"
                 label="Name"
-                onChange={(event: any) => setName(event.target.value)}
+                onChange={(event: any) => setName(event.target.value.trim())}
                 value={name}
                 option={Firefighters.map((user: any) => {
                   return (
@@ -164,7 +164,7 @@ const Vacations = () => {
               <Input
                 label="Amount"
                 name="amount"
-                onChange={(event: any) => setAmount(event.target.value)}
+                onChange={(event: any) => setAmount(event.target.value.trim())}
                 id="amount"
                 type="text"
                 value={amount}
@@ -174,7 +174,7 @@ const Vacations = () => {
                 id="type"
                 name="type"
                 label="Type"
-                onChange={(event: any) => setType(event.target.value)}
+                onChange={(event: any) => setType(event.target.value.trim())}
                 value={type}
                 option={
                   <>

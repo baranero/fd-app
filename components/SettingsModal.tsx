@@ -6,7 +6,6 @@ import useRegisteredUsers from "@/hooks/useRegisteredUsers";
 import axios from "axios";
 import swal from "sweetalert";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import bcrypt from 'bcrypt'
 
 interface SettingsModalProps {
   visible?: boolean;
@@ -59,12 +58,17 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
         icon: "warning",
         text: "Passwords are different",
       });
+      setNewPassword('')
+      setConfirmedPassword('')
     } else if (password === newPassword) {
       swal({
         title: "Warning!",
         icon: "warning",
         text: "The old password is the same as the new one",
       });
+      setPassword('')
+      setNewPassword('')
+      setConfirmedPassword('')
     }  else {
 
       try {
@@ -81,6 +85,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
           text: "Old password does not match",
         });
       }
+      setPassword('')
+      setNewPassword('')
+      setConfirmedPassword('')
     }
   };
 
