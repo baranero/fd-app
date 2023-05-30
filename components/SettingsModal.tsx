@@ -127,7 +127,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
         className="
                     relative
                     mx-auto
-                    w-[70%]
+                    w-full
+                    lg:w-[70%]
                     rounded-md
                     overflow-hidden
                 "

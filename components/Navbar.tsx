@@ -68,13 +68,18 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
         </div>
 
         <div
-          className="lg:hidden md:hidden
+          className="lg:hidden md:hidden flex 
                 "
         >
+          <IoMdSettings
+            onClick={openModal}
+            size={30}
+            className="text-white mx-1 cursor-pointer"
+          />
           <GiHamburgerMenu
             onClick={toggleMobileMenu}
             size={30}
-            className={`text-white mx-4 transition ${
+            className={`text-white mx-2 transition ${
               showMobileMenu ? "rotate-180" : "rotate-0"
             }`}
           />
