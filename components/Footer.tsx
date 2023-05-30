@@ -21,7 +21,7 @@ const Footer = () => {
             "
       >
         <p className="text-white">
-          &#169; 2023 Jakub Baran | All rights reserved.
+          2023 Jakub Baran
         </p>
         <div className="flex flex-row mt-3 w-full justify-center items-center">
           <Link href="https://github.com/baranero">
