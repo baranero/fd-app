@@ -147,9 +147,19 @@ const Overhours = () => {
               <Input
                 label="Amount"
                 name="amount"
-                onChange={(event: FormEvent<HTMLInputElement>) =>
-                  setAmount(Number(event.currentTarget.value.trim()))
-                }
+                onChange={(event: FormEvent<HTMLInputElement>) => {
+                  const value = event.currentTarget.value.trim();
+                  if (isNaN(Number(value))) {
+                    swal({
+                      title: "Warning!",
+                      icon: "warning",
+                      text: "Amount has to be a number greater than 0!",
+                    });
+                    setAmount(0);
+                  } else {
+                    setAmount(Number(value));
+                  }
+                }}
                 id="amount"
                 type="text"
                 value={amount}
