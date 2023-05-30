@@ -35,12 +35,12 @@ const Footer = () => {
             </p>
           </Link>
         </div>
-        <div className="flex text-white flex-row mt-3 w-full justify-center items-center">
-          Image by&nbsp;
+        <div className="flex text-white text-center flex-row mt-3 w-full justify-center items-center">
+          
           <a
             className="hover:opacity-60"
             href="https://www.freepik.com/free-photo/top-view-desk-arrangement-with-notebook_16688666.htm#query=schedule%20draw&position=34&from_view=search&track=ais"
-          > Freepik
+          >Image by Freepik
           </a>{" "}
           &nbsp;&nbsp;| &nbsp;{" "}
           <a className="hover:opacity-60" href="https://www.pexels.com/pl-pl/zdjecie/czarny-niebieski-i-czerwony-wykres-ilustracja-186461/">
