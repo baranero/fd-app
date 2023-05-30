@@ -6,6 +6,7 @@ import useRegisteredUsers from "@/hooks/useRegisteredUsers";
 import axios from "axios";
 import swal from "sweetalert";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import bcrypt from 'bcrypt'
 
 interface SettingsModalProps {
   visible?: boolean;
@@ -48,19 +49,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
       console.error("Error:", error);
     }
   };
-
-  // const comparePasswords = async (password: string, hashedPassword: string) => {
-  //   try {
-  //     const isMatch = await bcrypt.compare(password, hashedPassword)
-  //   } catch (error) {
-  //     console.log(error);
-      
-  //   }
-  // }
-
-  // console.log(comparePasswords(password, currentUser.hashedPassword));
   
-
   const handlePasswordChange = async (event: any) => {
     event.preventDefault();
 
@@ -77,15 +66,20 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
         text: "The old password is the same as the new one",
       });
     }  else {
-      swal({
-        title: "Changed!",
-        icon: "success",
-      });
 
       try {
         await axios.put("/api/current", { password, newPassword });
+        swal({
+          title: "Changed!",
+          icon: "success",
+        });
       } catch (error) {
         console.error("Error:", error);
+        swal({
+          title: "Warning!",
+          icon: "warning",
+          text: "Old password does not match",
+        });
       }
     }
   };
