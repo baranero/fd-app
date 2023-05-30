@@ -62,6 +62,16 @@ const Auth = () => {
   }, [email, password, router]);
 
   const register = useCallback(async () => {
+
+    if (password.length < 8) {
+      swal({
+        title: "Warning!",
+        icon: "warning",
+        text: "Password must be at least 8 characters long.",
+      });
+      setPassword('')
+      return;
+    }
     
     try {
       await axios.post("/api/register", {
@@ -93,7 +103,7 @@ const Auth = () => {
                 <Input
                   label="Username"
                   name="username"
-                  onChange={(event: any) => setName(event.target.value)}
+                  onChange={(event: any) => setName(event.target.value.trim())}
                   id="name"
                   type="text"
                   value={name}
