@@ -33,7 +33,7 @@ const UserItem: React.FC<UserItemProps> = ({ data, deleteButton }) => {
         mt-10
         w-[60vw]
         md:w-[25vw]
-        lg:w-[15vw]
+        lg:w-[20%]
         transition
         duration
         delay-100
@@ -45,7 +45,7 @@ const UserItem: React.FC<UserItemProps> = ({ data, deleteButton }) => {
         <div className="">
           <HiOutlineUserCircle className="mx-auto" size={150} />
           <div className="mt-3 mb-5">
-            <p className="mx-auto text-lg w-max flex">
+            <p className="mx-auto text-lg w-full items-center justify-center flex">
               {data.name}
               <AiOutlineDown
                 onClick={toggleUserInfo}

@@ -147,9 +147,22 @@ const Auth = () => {
                 {variant === "login" ? "Sign up" : "Sign in"}
               </span>
             </p>
-            <p className="text-neutral-400 mt-8">
-              Log as an admin:
-              email: admin@test.com
+            <p className="text-neutral-400 mt-4">
+              Log in as an admin:
+            </p>
+            <p className="text-neutral-400">
+              Email: admin@test.com
+            </p>
+            <p className="text-neutral-400">
+              password: 123qwe!@#
+            </p>
+            <p className="text-neutral-400 mt-4">
+              Log in as a normal user:
+            </p>
+            <p className="text-neutral-400">
+              Email: admin@test.com
+            </p>
+            <p className="text-neutral-400">
               password: 123qwe!@#
             </p>
           </div>

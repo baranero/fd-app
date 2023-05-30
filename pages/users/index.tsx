@@ -60,7 +60,7 @@ const Users = () => {
 
   return (
     <Layout>
-      <div className="bg-zinc-700 h-full bg-opacity-70 px-8 lg:px-16 py-8 self-center mx-auto mt-5 lg:rounded-md w-full lg:w-[80%]">
+      <div className="bg-zinc-700 h-full bg-opacity-70 px-8 lg:px-16 py-8 self-center mx-auto mt-5 lg:rounded-md w-full lg:w-[90%]">
         {currentUser?.isAdmin === "true" ? (
           <>
             <h2 className="text-white text-4xl mb-8 text-center font-semibold">
