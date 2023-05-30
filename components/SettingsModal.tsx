@@ -52,6 +52,16 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
   const handlePasswordChange = async (event: any) => {
     event.preventDefault();
 
+    if (newPassword.length < 8 ) {
+      swal({
+        title: "Warning!",
+        icon: "warning",
+        text: "Password must be at least 8 characters long.",
+      });
+      setNewPassword('')
+      return;
+    }
+
     if (newPassword !== confirmedPassword) {
       swal({
         title: "Warning!",
