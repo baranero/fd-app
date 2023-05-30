@@ -160,10 +160,10 @@ const Auth = () => {
               Log in as a normal user:
             </p>
             <p className="text-neutral-400">
-              Email: admin@test.com
+              Email: user@test.com
             </p>
             <p className="text-neutral-400">
-              password: 123qwe!@#
+              password: qweASDzxc
             </p>
           </div>
         </div>
