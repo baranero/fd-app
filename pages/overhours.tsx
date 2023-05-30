@@ -11,7 +11,7 @@ import { outputOverhours } from "@/utils/outputOverhours";
 import axios from "axios";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import swal from "sweetalert";
 
@@ -134,21 +134,22 @@ const Overhours = () => {
                 id="name"
                 name="name"
                 label="Name"
-                onChange={(event: any) => setName(event.target.value.trim())}
+                onChange={(event: FormEvent<HTMLSelectElement>) =>
+                  setName(event.currentTarget.value.trim())
+                }
                 value={name}
-                options={Firefighters.map((user: any) => {
-                  return (
-                    <option value={user.name} key={user.id}>
-                      {user.name}
-                    </option>
-                  );
-                })}
+                options={Firefighters.map((user: any) => ({
+                  value: user.name,
+                  label: user.name,
+                }))}
               />
 
               <Input
                 label="Amount"
                 name="amount"
-                onChange={(event: any) => setAmount(event.target.value.trim())}
+                onChange={(event: FormEvent<HTMLInputElement>) =>
+                  setAmount(Number(event.currentTarget.value.trim()))
+                }
                 id="amount"
                 type="text"
                 value={amount}
