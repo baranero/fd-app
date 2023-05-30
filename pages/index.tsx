@@ -22,7 +22,6 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 export default function Home() {
-  const { data: user } = useCurrentUser();
 
   return (
     <Layout>
@@ -42,4 +41,3 @@ export default function Home() {
   );
 }
 
-// Zdjęcie dodane przez Burak The Weekender: https://www.pexels.com/pl-pl/zdjecie/czarny-niebieski-i-czerwony-wykres-ilustracja-186461/

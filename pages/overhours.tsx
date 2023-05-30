@@ -136,7 +136,7 @@ const Overhours = () => {
                 label="Name"
                 onChange={(event: any) => setName(event.target.value.trim())}
                 value={name}
-                option={Firefighters.map((user: any) => {
+                options={Firefighters.map((user: any) => {
                   return (
                     <option value={user.name} key={user.id}>
                       {user.name}

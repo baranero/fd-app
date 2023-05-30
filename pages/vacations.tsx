@@ -9,7 +9,7 @@ import { outputVacations } from "@/utils/outputVacations";
 import axios from "axios";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
-import { useState, useCallback } from "react";
+import { useState, FormEvent } from "react";
 import swal from "sweetalert";
 import { mergeArr } from "@/utils/mergeArrays";
 import { AiFillDelete } from "react-icons/ai";
@@ -151,20 +151,19 @@ const Vacations = () => {
                 id="name"
                 name="name"
                 label="Name"
-                onChange={(event: any) => setName(event.target.value.trim())}
+                onChange={(event: FormEvent<HTMLSelectElement>) =>
+                  setName(event.currentTarget.value.trim())
+                }
                 value={name}
-                option={Firefighters.map((user: any) => {
-                  return (
-                    <option value={user.name} key={user.id}>
-                      {user.name}
-                    </option>
-                  );
-                })}
+                options={Firefighters.map((user: any) => ({
+                  value: user.name,
+                  label: user.name,
+                }))}
               />
               <Input
                 label="Amount"
                 name="amount"
-                onChange={(event: any) => setAmount(event.target.value.trim())}
+                onChange={(event: FormEvent<HTMLInputElement>) => setAmount(Number(event.currentTarget.value.trim()))}
                 id="amount"
                 type="text"
                 value={amount}
@@ -174,14 +173,13 @@ const Vacations = () => {
                 id="type"
                 name="type"
                 label="Type"
-                onChange={(event: any) => setType(event.target.value.trim())}
+                onChange={(event: FormEvent<HTMLSelectElement>) =>
+                  setType(event.currentTarget.value.trim())}
                 value={type}
-                option={
-                  <>
-                    <option value="Holiday">Holiday</option>
-                    <option value="Additional">Additional</option>
-                  </>
-                }
+                options={[
+                  { value: "Holiday", label: "Holiday" },
+                  { value: "Additional", label: "Additional" },
+                ]}
               />
 
               <button

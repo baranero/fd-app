@@ -9,7 +9,7 @@ type Props = {
   children: ReactNode;
 };
 
-const Layout: React.FC<Props> = (props) => {
+const Layout: React.FC<Props> = (props: Props) => {
   const { isOpen, closeModal, openModal } = useSettingsModal();
 
   const handleOpenModal = useCallback(() => {

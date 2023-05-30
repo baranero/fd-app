@@ -9,7 +9,7 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 
 interface SettingsModalProps {
   visible?: boolean;
-  onClose: any;
+  onClose: () => void;
 }
 
 const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
@@ -181,13 +181,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
                   label="Name"
                   onChange={(event: any) => setName(event.target.value)}
                   value={name}
-                  option={registeredUsers.map((user: any) => {
-                    return (
-                      <option key={user.id} value={user.name}>
-                        {user.name}
-                      </option>
-                    );
-                  })}
+                  options={registeredUsers.map((user: any) => ({
+                    value: user.name,
+                    label: user.name,
+                  }))}
                 />
                 <SelectInput
                   id="isAdmin"
@@ -195,12 +192,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
                   label="Admin"
                   onChange={(event: any) => setAdmin(event.target.value)}
                   value={admin}
-                  option={
-                    <>
-                      <option value="true">True</option>
-                      <option value="false">False</option>
-                    </>
-                  }
+                  options={[
+                    { value: "true", label: "True" },
+                    { value: "false", label: "False" }
+                  ]}
                 />
                 <button
                   type="submit"

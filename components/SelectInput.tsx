@@ -1,10 +1,10 @@
 interface SelectInputProps {
   id: string;
   name: string;
-  onChange: any;
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
   value: string | number;
   label: string;
-  option: any;
+  options: { value: string | number; label: string }[];
 }
 
 const SelectInput: React.FC<SelectInputProps> = ({
@@ -13,7 +13,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
   onChange,
   value,
   label,
-  option,
+  options,
 }) => {
   return (
     <div className="relative">
@@ -65,7 +65,11 @@ const SelectInput: React.FC<SelectInputProps> = ({
         value={value}
       >
         <option value="">-Select-</option>
-        {option}
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </select>
     </div>
   );

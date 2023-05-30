@@ -6,7 +6,7 @@ import useUserList from "@/hooks/useUserList";
 import axios from "axios";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import swal from "sweetalert";
 
 export async function getServerSideProps(context: NextPageContext) {
@@ -73,7 +73,7 @@ const Users = () => {
               <Input
                 label="Name"
                 name="name"
-                onChange={(event: any) => setName(event.target.value)}
+                onChange={(event: FormEvent<HTMLInputElement>) => setName(event.currentTarget.value)}
                 id="name"
                 type="select"
                 value={name}

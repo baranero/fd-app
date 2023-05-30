@@ -1,7 +1,9 @@
+import React, { ChangeEvent } from "react";
+
 interface InputProps {
   id: string;
   name: string;
-  onChange: any;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   value: string | number;
   label: string;
   type?: string;
@@ -15,6 +17,7 @@ const Input: React.FC<InputProps> = ({
   value,
   label,
   type,
+  min,
 }) => {
   return (
     <div className="relative">
