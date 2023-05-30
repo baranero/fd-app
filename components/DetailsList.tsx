@@ -1,7 +1,4 @@
-import useUserList from "@/hooks/useUserList";
-import useVacations from "@/hooks/useVacations";
-import { mergeArr } from "@/utils/mergeArrays";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 interface DetailsListProps {
   columns: GridColDef[];

@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import bcrypt, { compare } from "bcrypt";
+import bcrypt from "bcrypt";
 
 import serverAuth from "@/lib/serverAuth";
-import Credentials from "next-auth/providers/credentials";
 
 export default async function handler(
   req: NextApiRequest,

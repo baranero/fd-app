@@ -11,8 +11,8 @@ import { outputOverhours } from "@/utils/outputOverhours";
 import axios from "axios";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
-import { useState, useCallback } from "react";
-import { AiFillDelete, AiOutlineDown } from "react-icons/ai";
+import { useState } from "react";
+import { AiFillDelete } from "react-icons/ai";
 import swal from "sweetalert";
 
 export async function getServerSideProps(context: NextPageContext) {

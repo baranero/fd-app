@@ -3,8 +3,6 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 import { AiOutlineDown } from "react-icons/ai";
 import { useCallback, useState } from "react";
 import UserInfo from "./UserInfo";
-import axios from "axios";
-import { mutate } from "swr";
 import useCurrentUser from "@/hooks/useCurrentUser";
 
 interface UserItemProps {

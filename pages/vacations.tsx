@@ -11,7 +11,6 @@ import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 import { useState, useCallback } from "react";
 import swal from "sweetalert";
-import { DataGrid } from "@mui/x-data-grid";
 import { mergeArr } from "@/utils/mergeArrays";
 import { AiFillDelete } from "react-icons/ai";
 import useCurrentUser from "@/hooks/useCurrentUser";
@@ -37,8 +36,6 @@ const Vacations = () => {
   const { data: Firefighters = [] } = useUserList();
   const { data: Vacations = [], mutate } = useVacations();
   const { data: currentUser } = useCurrentUser();
-
-  const [admin, setAdmin] = useState(false);
 
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);

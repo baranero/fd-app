@@ -1,15 +1,11 @@
-import useSettingsModal from "@/hooks/useSettingsModal";
 import React, { useCallback, useEffect, useState } from "react";
-import prismadb from "@/lib/prismadb";
 import { AiOutlineClose } from "react-icons/ai";
 import SelectInput from "./SelectInput";
 import Input from "./Input";
-import { NextPageContext } from "next";
 import useRegisteredUsers from "@/hooks/useRegisteredUsers";
 import axios from "axios";
 import swal from "sweetalert";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import { signIn } from "next-auth/react";
 
 interface SettingsModalProps {
   visible?: boolean;
@@ -53,6 +49,18 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
     }
   };
 
+  // const comparePasswords = async (password: string, hashedPassword: string) => {
+  //   try {
+  //     const isMatch = await bcrypt.compare(password, hashedPassword)
+  //   } catch (error) {
+  //     console.log(error);
+      
+  //   }
+  // }
+
+  // console.log(comparePasswords(password, currentUser.hashedPassword));
+  
+
   const handlePasswordChange = async (event: any) => {
     event.preventDefault();
 
@@ -68,7 +76,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
         icon: "warning",
         text: "The old password is the same as the new one",
       });
-    } else {
+    }  else {
       swal({
         title: "Changed!",
         icon: "success",
