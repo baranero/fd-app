@@ -57,8 +57,8 @@ To run FireApp locally on your machine, follow these steps:
 
 4. Configure the following environment variables in the .env file:
 
-DATABASE_URL: The URL to your PostgreSQL database in Supabase.
-NEXTAUTH_JWT_SECRET: The secret key for JWT authentication.
+DATABASE_URL: The URL to your PostgreSQL database in Supabase.</br>
+NEXTAUTH_JWT_SECRET: The secret key for JWT authentication.</br>
 NEXTAUTH_SECRET: The secret key for next-auth/react.
 
 4. Run the development server:
