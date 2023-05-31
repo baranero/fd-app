@@ -6,6 +6,8 @@ FireApp is a web application built using Next.js, TypeScript, Prisma, Tailwind C
 
 - **User Registration**: Users can register in the app using a username that is verified against the existing firefighter database. Password is required and must be at least 8 characters long.
 
+
+
 - **Authentication**: the application uses the `next-auth/react` library for authentication. Once authenticated, users can access a personalized dashboard and perform various actions based on the permissions assigned to them.
 
 - **Change management**: Users with administrator privileges can add and delete change records. Each user can change their password. Shift records contain vacation, overtime, and other relevant details. The data is stored in a PostgreSQL database.
