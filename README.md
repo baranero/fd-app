@@ -53,10 +53,13 @@ To run FireApp locally on your machine, follow these steps:
 `cd fd-app` </br>
 `npm install`
 
+3. Create a .env file in the root of the project.
 
-3. Set up the environment variables:
+4. Configure the following environment variables in the .env file:
 
-Copy the `.env.example` file and rename it to `.env`. Update the environment variables in the `.env` file with your specific configuration.
+DATABASE_URL: The URL to your PostgreSQL database in Supabase.
+NEXTAUTH_JWT_SECRET: The secret key for JWT authentication.
+NEXTAUTH_SECRET: The secret key for next-auth/react.
 
 4. Run the development server:
 
@@ -67,7 +70,25 @@ The application will be accessible at `http://localhost:3000`.
 
 ## Contributing
 
-Contributions to FireApp are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request.
+Contributions to FireApp are welcome. If you would like to contribute, please follow these guidelines:
+
+1. Fork the repository.
+
+2. Create a new branch for your feature or bug fix:
+
+`git checkout -b my-feature`
+
+3. Make your changes and commit them:
+
+`git commit -m "Add my feature"`
+
+4. Push the changes to your forked repository:
+
+`git push origin my-feature`
+
+5. Open a pull request on the main repository.
+
+Please ensure that your code follows the project's coding conventions and includes appropriate documentation where necessary.
 
 ## License
 
