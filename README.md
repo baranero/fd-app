@@ -1,20 +1,32 @@
 # FireApp
 
-FireApp is a web application built using Next.js, TypeScript, Prisma, Tailwind CSS, PostgreSQL and Supabase. It is a platform for managing changes in the fire brigade. The app offers various features such as user registration, authentication, change management, and user administration.
+FireApp is a web application built using Next.js, TypeScript, Prisma, Tailwind CSS, PostgreSQL and Supabase. It is a platform for managing crews in the fire brigade. The app offers various features such as user registration, authentication, change management, and user administration.
 
 ## Characteristics
 
 - **User Registration**: Users can register in the app using a username that is verified against the existing firefighter database. Password is required and must be at least 8 characters long.
 
+![Login page](images/auth-page.png)
+
 - **Authentication**: the application uses the `next-auth/react` library for authentication. Once authenticated, users can access a personalized dashboard and perform various actions based on the permissions assigned to them.
 
 - **Change management**: Users with administrator privileges can add and delete change records. Each user can change their password. Shift records contain vacation, overtime, and other relevant details. The data is stored in a PostgreSQL database.
 
+![Vacations page](images/vacations-page.png)
+
 - **User Administration**: Admin users have additional privileges such as the ability to delete any record, delete users, and assign admin privileges to other users.
+
+![Delete user](images/swal-example.png) </br>
+
+![Settings](images/settings-modal.png)
 
 - **Visualization**: The app includes interactive charts powered by "react-charts" to display change data in a visual format. Users can view charts to have information in an accessible form.
 
+![Chart](images/normal-user-access-2.png)
+
 - **UI Libraries**: FireApp also uses Material-UI components to design intuitive and responsive user interfaces, giving your application a modern and polished look.
+
+![Table](images/vacations-delete-record.png)
 
 - **API integration**: the application integrates with Supabase using `axios` and `swr`. Retrieves and updates data from external APIs.
 
