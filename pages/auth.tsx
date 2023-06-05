@@ -92,12 +92,12 @@ const Auth = () => {
 
   return (
     <div className="relative h-[100vh] w-full bg-[url('/images/background.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
-      <div className="bg-black w-full h-full lg:bg-opacity-60">
+      <div className="bg-black w-full h-full bg-opacity-60">
         <nav className="px-12 py-5">
           <Image src="/images/logo.svg" alt="Logo" width={200} height={100} />
         </nav>
-        <div className="flex justify-center mt-32">
-          <div className="bg-zinc-700 bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
+        <div className="flex justify-center mt-10">
+          <div className="lg:bg-zinc-700 lg:bg-opacity-70 md:bg-zinc-700 md:bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
             <h2 className="text-white text-4xl mb-8 text-center font-semibold">
               {variant === "login" ? "Sign in" : "Sign up"}
             </h2>

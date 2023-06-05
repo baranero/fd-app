@@ -5,9 +5,10 @@ import { signOut } from "next-auth/react";
 
 interface MobileMenuProps {
   visible?: boolean;
+  currentUser: string;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ visible }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ visible, currentUser }) => {
   if (!visible) {
     return null;
   }
@@ -17,7 +18,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ visible }) => {
       className="bg-neutral-400
         bg-opacity-20 text-center w-full top-8 right-0 py-5 flex-col bordr-2 border-gray-800 flex"
     >
+      
       <div className="flex flex-col gap-4">
+
         <Link href="/">
           <NavbarItem label="Home" />
         </Link>

@@ -68,9 +68,10 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
         </div>
 
         <div
-          className="lg:hidden md:hidden flex 
+          className="lg:hidden md:hidden flex items-center
                 "
         >
+          <p className="text-white mr-2 text-sm">Hello, {currentUser?.name}</p>
           <IoMdSettings
             onClick={openModal}
             size={30}
@@ -98,7 +99,7 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
           />
         </div>
       </div>
-      <MobileMenu visible={showMobileMenu} />
+      <MobileMenu visible={showMobileMenu} currentUser={currentUser.name} />
     </nav>
   );
 };

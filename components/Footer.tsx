@@ -35,7 +35,7 @@ const Footer = () => {
             </p>
           </Link>
         </div>
-        <div className="flex text-white text-center flex-row mt-3 w-full justify-center items-center">
+        <div className="flex text-white text-sm text-center flex-row mt-3 w-full justify-center items-center">
           
           <a
             className="hover:opacity-60"
