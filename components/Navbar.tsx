@@ -99,7 +99,7 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
           />
         </div>
       </div>
-      <MobileMenu visible={showMobileMenu} currentUser={currentUser.name} />
+      <MobileMenu visible={showMobileMenu} />
     </nav>
   );
 };

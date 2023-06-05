@@ -5,10 +5,9 @@ import { signOut } from "next-auth/react";
 
 interface MobileMenuProps {
   visible?: boolean;
-  currentUser: string;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ visible, currentUser }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ visible }) => {
   if (!visible) {
     return null;
   }
