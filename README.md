@@ -69,8 +69,8 @@ To run FireApp locally on your machine, follow these steps:
 
 4. Create a Supabase Project:
 
-- Go to the Supabase website and sign in or create an account if you haven't already.</br>
-- Create a new project and give it a name.
+- Go to the Supabase website and sign in or create an account.</br>
+- Create a new project.
 - Go to 'Settings', then to 'Database'. In connection string choose 'Nodejs' and copy link.
 
 5. Configure the following environment variables in the .env file:
