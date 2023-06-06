@@ -91,7 +91,7 @@ NEXTAUTH_SECRET="NEXTAUTH-SECRET"
 
 9. Before You start using FireApp:
 
-- Go to tables editor. Choose 'firefighters' table and insert row with any id and name.
+- Go to tables editor in Supabase. Choose 'firefighters' table and insert row with any id and name.
 - Next Sign up to FireApp with username same as You set in previous step.
 - Go again to tables editor and choose 'users'. Set 'isAdmin' as 'true'.
 - Now You are main admin. You have access to all functionality.
