@@ -1,6 +1,6 @@
 # FireApp
 
-FireApp is a web application built using Next.js, TypeScript, Prisma, Tailwind CSS, PostgreSQL and Supabase. It is a platform for managing crews in the fire brigade. The app offers various features such as user registration, authentication, change management, and user administration.
+FireApp is a web application built using Next.js, TypeScript, Prisma, Tailwind CSS, PostgreSQL and Supabase. It is a platform for managing crews in the fire brigade. The app offers various features such as user registration, authentication, crews management, and user administration.
 
 ## Characteristics
 
@@ -67,18 +67,35 @@ To run FireApp locally on your machine, follow these steps:
 
 3. Create a .env file in the root of the project.
 
-4. Configure the following environment variables in the .env file:
+4. Create a Supabase Project:
 
-DATABASE_URL: The URL to your PostgreSQL database in Supabase.</br>
-NEXTAUTH_JWT_SECRET: The secret key for JWT authentication.</br>
-NEXTAUTH_SECRET: The secret key for next-auth/react.
+- Go to the Supabase website and sign in or create an account.</br>
+- Create a new project.
+- Go to 'Settings', then to 'Database'. In connection string choose 'Nodejs' and copy link.
 
-4. Run the development server:
+5. Configure the following environment variables in the .env file:
+
+DATABASE_URL="[Paste copied link here]" Replace [YOUR-PASSWORD] with the password you set when creating the project.</br>
+NEXTAUTH_JWT_SECRET="NEXTAUTH-JWT-SECRET"</br>
+NEXTAUTH_SECRET="NEXTAUTH-SECRET"
+
+6. Run Database Migrations with Prisma:
+
+`npx prisma migrate dev`
+
+7. Run the development server:
 
 `npm run dev`
 
+8. The application will be accessible at `http://localhost:3000`.
 
-The application will be accessible at `http://localhost:3000`.
+9. Before You start using FireApp:
+
+- Go to tables editor in Supabase. Choose 'firefighters' table and insert row with any id and name.
+- Next Sign up to FireApp with username same as You set in previous step.
+- Go again to tables editor and choose 'users'. Set 'isAdmin' as 'true'.
+- Now You are main admin. You have access to all functionality.
+- Enjoy!
 
 ## Contributing
 
