@@ -87,8 +87,15 @@ NEXTAUTH_SECRET="NEXTAUTH-SECRET"
 
 `npm run dev`
 
+8. The application will be accessible at `http://localhost:3000`.
 
-The application will be accessible at `http://localhost:3000`.
+9. Before You start using FireApp:
+
+- Go to tables editor. Choose 'firefighters' table and insert row with any id and name.
+- Next Sign up to FireApp with username same as You set in previous step.
+- Go again to tables editor and choose 'users'. Set 'isAdmin' as 'true'.
+- Now You are main admin. You have access to all functionality.
+- Enjoy!
 
 ## Contributing
 
