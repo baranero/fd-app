@@ -6,44 +6,48 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  await serverAuth(req, res);
-  if (req.method === "GET") {
-    try {
-      const overhours = await prismadb.overhours.findMany();
+  try {
+    await serverAuth(req, res);
 
+    if (req.method === "GET") {
+      const overhours = await prismadb.overhours.findMany();
       return res.status(200).json(overhours);
-    } catch (error) {
-      console.log({ error });
-      return res.status(500).end();
     }
-  }
 
-  if (req.method === "POST") {
-    const { amount, name } = req.body;
+    if (req.method === "POST") {
+      const { amount, name } = req.body;
 
-    try {
-      const overhours = await prismadb.overhours.findMany();
+      if (!amount || !name) {
+        return res.status(400).json({ error: "Amount and name are required" });
+      }
 
       const user = await prismadb.firefighters.findUnique({
         where: {
           name: name,
         },
+        select: {
+          id: true,
+        },
       });
+
+      if (!user) {
+        return res.status(400).json({ error: "User not found" });
+      }
 
       const addedOverhours = await prismadb.overhours.create({
         data: {
           id: (Date.now() + Math.random()).toString(),
           amount: +amount,
-          userId: user!.id,
+          userId: user.id,
         },
       });
 
       return res.status(200).json(addedOverhours);
-    } catch (error) {
-      console.log({ error });
-      return res.status(500).end();
     }
-  } else {
-    res.status(405).json({ error: "Method Not Allowed" });
+
+    return res.status(405).json({ error: "Method Not Allowed" });
+  } catch (error) {
+    console.log({ error });
+    return res.status(500).end();
   }
 }
