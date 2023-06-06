@@ -26,7 +26,6 @@ const UserList = () => {
       cancelButtonText: "Cancel",
       icon: "warning",
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (currentUser.name === name) {
         Swal.fire("You can not delete yourself!", "", "error");
       } else if (result.isConfirmed) {
