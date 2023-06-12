@@ -39,7 +39,7 @@ const Layout: React.FC<Props> = (props: Props) => {
       <div className="pb-10 min-h-screen">
         <SettingsModal visible={isOpen} onClose={closeModal} />
 
-        {!pageLoading ? (
+        {pageLoading ? (
           <div className="flex flex-col justify-center items-center h-[50vh] lg:h-[90vh] md:h-[90vh] "><div className="container">
           <div className="red flame"></div>
           <div className="orange flame"></div>
