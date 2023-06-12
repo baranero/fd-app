@@ -12,7 +12,6 @@ type Props = {
 
 const Layout: React.FC<Props> = (props: Props) => {
   const { isOpen, closeModal, openModal } = useSettingsModal();
-  const [isLoading, setIsLoading] = useState(true);
 
   const handleOpenModal = useCallback(() => {
     mutate;
