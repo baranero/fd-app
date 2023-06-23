@@ -1,7 +1,7 @@
 # FireApp
 
 FireApp is a web application built using Next.js, TypeScript, Prisma, Tailwind CSS, PostgreSQL and Supabase. It is a platform for managing crews in the fire brigade. The app offers various features such as user registration, authentication, crews management, and user administration.</br></br>
-To create account your person must exist in the database. An admin user has access to the database. Log in as administrator to add and remove users.
+<b><u>To create account your person must exist in the database. An admin user has access to the database. Log in as administrator to add and remove users.</u></b>
 
 ## Characteristics
 
