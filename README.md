@@ -120,3 +120,6 @@ Contributions to FireApp are welcome. If you would like to contribute, please fo
 
 Please ensure that your code follows the project's coding conventions and includes appropriate documentation where necessary.
 
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to use, modify, and distribute the code.
