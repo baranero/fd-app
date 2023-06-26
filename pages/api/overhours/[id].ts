@@ -9,10 +9,8 @@ export default async function handler(
   await serverAuth(req, res);
   if (req.method === "DELETE") {
     const id = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id;
-    console.log(req.query);
-    try {
-      console.log(req.body);
 
+    try {
       const overhours = await prismadb.overhours.delete({
         where: {
           id: id,

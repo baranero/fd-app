@@ -10,7 +10,7 @@ const UserList = () => {
 
   const handleDelete = async (id: string, name: string) => {
     try {
-      await axios.delete(`/api/users/${id}`, { data: { name } });
+      await axios.delete(`/api/users/${id}`);
       mutate();
     } catch (error) {
       console.error("Error:", error);
