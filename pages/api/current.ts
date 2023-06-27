@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcrypt";
+import prismadb from "@/lib/prismadb";
 
 import serverAuth from "@/lib/serverAuth";
 
