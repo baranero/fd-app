@@ -42,6 +42,16 @@ const Auth = () => {
 
   const login = useCallback(async () => {
 
+    if (password.length < 8) {
+      swal({
+        title: "Warning!",
+        icon: "warning",
+        text: "Password must be at least 8 characters long.",
+      });
+      setPassword('')
+      return;
+    }
+
     try {
       const result = await signIn("credentials", {
         email,
@@ -61,6 +71,8 @@ const Auth = () => {
         icon: "warning",
         text: "Login failed. Please check your email and password.",
       });
+      setEmail('')
+      setPassword('')
     }
   }, [email, password, router]);
 
@@ -87,8 +99,25 @@ const Auth = () => {
     } catch (error) {
 
       console.log(error);
+      console.log(email, name);
+      
+      if (!email.includes("@")) {
+        swal({
+          title: "Warning!",
+          icon: "warning",
+          text: "Registration failed. Check your email address.",
+        });
+      } else {
+        swal({
+          title: "Warning!",
+          icon: "warning",
+          text: "Registration failed. You have no access. Your username is not in the database.",
+        });
+        
+      }
+      
     }
-  }, [password, login, trimmedEmail, trimmedName]);
+  }, [password, login, trimmedEmail, trimmedName, name]);
 
   return (
     <div className="relative h-[100vh] w-full bg-[url('/images/background.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
