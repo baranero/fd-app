@@ -117,7 +117,7 @@ const Auth = () => {
       }
       
     }
-  }, [password, login, trimmedEmail, trimmedName, name]);
+  }, [password, login, trimmedEmail, trimmedName, name, email]);
 
   return (
     <div className="relative h-[100vh] w-full bg-[url('/images/background.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">

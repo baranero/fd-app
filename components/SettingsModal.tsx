@@ -83,6 +83,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ visible, onClose }) => {
 
       try {
         await axios.put("/api/current", { password, newPassword });
+        mutate();
         swal({
           title: "Changed!",
           icon: "success",
