@@ -20,7 +20,13 @@ const Footer = () => {
               bg-opacity-40
             "
       >
-        <p className="text-white">2023 Jakub Baran</p>
+        <p className="text-white">2023 | Jakub Baran</p>
+        <a
+          href="https://github.com/baranero/fd-app"
+          className="text-white hover:opacity-60 mt-3"
+        >
+          See code on GitHub
+        </a>
         <div className="flex flex-row mt-3 w-full justify-center items-center">
           <Link
             aria-label="GitHub"
@@ -40,22 +46,6 @@ const Footer = () => {
               <AiFillLinkedin size={30} />
             </p>
           </Link>
-        </div>
-        <div className="flex text-white text-sm text-center flex-row mt-3 w-full justify-center items-center">
-          <a
-            className="hover:opacity-60"
-            href="https://www.freepik.com/free-photo/top-view-desk-arrangement-with-notebook_16688666.htm#query=schedule%20draw&position=34&from_view=search&track=ais"
-          >
-            Image by Freepik
-          </a>{" "}
-          &nbsp;&nbsp;| &nbsp;{" "}
-          <a
-            className="hover:opacity-60"
-            href="https://www.pexels.com/pl-pl/zdjecie/czarny-niebieski-i-czerwony-wykres-ilustracja-186461/"
-          >
-            {" "}
-            Image added by Burak The Weekender
-          </a>
         </div>
       </div>
     </nav>
