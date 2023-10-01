@@ -25,7 +25,7 @@ const Footer = () => {
           href="https://github.com/baranero/fd-app"
           className="text-white hover:opacity-60 mt-3"
         >
-          See code on GitHub
+          See code on <strong>GitHub</strong>
         </a>
         <div className="flex flex-row mt-3 w-full justify-center items-center">
           <Link
