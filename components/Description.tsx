@@ -27,6 +27,7 @@ const Description: React.FC<DescriptionProps> = ({ title, text, src, alt }) => {
             height={800}
             objectFit="cover"
             className="rounded-lg"
+            loading="lazy"
           />
         </div>
       </div>
