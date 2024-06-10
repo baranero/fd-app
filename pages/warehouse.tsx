@@ -26,6 +26,7 @@ interface WarehouseItem {
   productValue: number;
   notes?: string;
   entryDate: string;
+  operation: string;
 }
 
 interface Product {
@@ -65,6 +66,7 @@ const Warehouse: React.FC = () => {
     productId: "",
     quantity: 0,
     notes: "",
+    operation: "Dodaję",
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -86,7 +88,7 @@ const Warehouse: React.FC = () => {
         text: "Item deleted successfully!",
       });
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error deleting item:", error);
       Swal.fire({
         title: "Error!",
         icon: "error",
@@ -141,6 +143,7 @@ const Warehouse: React.FC = () => {
       valueGetter: (params: GridValueGetterParams<WarehouseItem>) => new Date(params.row.entryDate),
       valueFormatter: (params: GridValueFormatterParams<Date>) => params.value.toLocaleString(), // Format date and time
     },
+    { field: "operation", headerName: "Operacja", flex: 1 },
     ...(currentUser?.isAdmin === "true"
       ? [
           {
@@ -159,7 +162,7 @@ const Warehouse: React.FC = () => {
 
   const rows = WarehouseItems.map((item: WarehouseItem) => ({
     id: item.id,
-    userName: item.user?.name || "", // Ensure that user data is included and handled
+    userName: item.user?.name || "",
     manufacturer: item.manufacturer,
     model: item.model,
     name: item.name,
@@ -167,12 +170,13 @@ const Warehouse: React.FC = () => {
     productValue: item.productValue,
     totalValue: item.quantity * item.productValue,
     notes: item.notes,
-    entryDate: new Date(item.entryDate).toISOString(), // Ensure entryDate is converted to ISO string
+    entryDate: new Date(item.entryDate).toISOString(),
+    operation: item.operation,
   }));
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { productId, quantity, notes } = formData;
+    const { productId, quantity, notes, operation } = formData;
 
     if (!productId || quantity <= 0) {
       Swal.fire({
@@ -189,16 +193,37 @@ const Warehouse: React.FC = () => {
         throw new Error("Product not found");
       }
 
-      await axios.post("/api/warehouse", {
+      let updatedQuantity = selectedProduct.quantity;
+      if (operation === "Dodaję") {
+        updatedQuantity += quantity;
+      } else if (operation === "Zabieram") {
+        updatedQuantity -= quantity;
+        if (updatedQuantity < 0) {
+          throw new Error("Insufficient quantity");
+        }
+      }
+
+      const warehouseData = {
         userId: currentUser.id,
         productId,
         manufacturer: selectedProduct.manufacturer,
         model: selectedProduct.model,
         name: selectedProduct.name,
-        quantity,
+        quantity: operation === "Dodaję" ? quantity : -quantity,
         productValue: selectedProduct.price,
-        notes,
-      });
+        notes: notes || null,
+        operation,
+      };
+
+      console.log("Sending warehouse data:", warehouseData);
+
+      await axios.post("/api/warehouse", warehouseData);
+
+      console.log(`Updating product ${productId} with new quantity: ${updatedQuantity}`);
+
+      // await axios.put(`/api/products/${productId}`, {
+      //   quantity: updatedQuantity,
+      // });
 
       mutateWarehouse();
       mutateProducts();
@@ -211,9 +236,10 @@ const Warehouse: React.FC = () => {
         productId: "",
         quantity: 0,
         notes: "",
+        operation: "Dodaję",
       });
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error adding item:", error);
       Swal.fire({
         title: "Error!",
         icon: "error",
@@ -224,11 +250,11 @@ const Warehouse: React.FC = () => {
 
   return (
     <Layout>
-      <div className=" mb-10 px-8 lg:px-16 py-8 self-center mx-auto w-full">
+      <div className="mb-10 px-8 lg:px-16 py-8 self-center mx-auto w-full">
         {currentUser?.isAdmin === "true" && (
           <div className="flex w-full">
             <div className="w-full">
-              <h2 className=" text-4xl mb-8 text-center font-semibold">Dodaję</h2>
+              <h2 className="text-4xl mb-8 text-center font-semibold">Dodaję</h2>
               <form onSubmit={handleSubmit} className="flex flex-col mx-auto gap-4 w-[90%] lg:w-[50%] md:w-[70%]">
                 <SelectInput
                   id="productId"
@@ -240,6 +266,17 @@ const Warehouse: React.FC = () => {
                     value: product.id,
                     label: `${product.name} (${product.manufacturer} - ${product.model})`,
                   }))}
+                />
+                <SelectInput
+                  id="operation"
+                  name="operation"
+                  label="Operacja"
+                  onChange={handleInputChange}
+                  value={formData.operation}
+                  options={[
+                    { value: "Dodaję", label: "Dodaję" },
+                    { value: "Zabieram", label: "Zabieram" },
+                  ]}
                 />
                 <Input
                   label="Ilość"
@@ -257,6 +294,7 @@ const Warehouse: React.FC = () => {
                   id="notes"
                   type="text"
                   value={formData.notes}
+                  required={false}
                 />
                 <button type="submit" className="bg-orange-600 py-3 text-white rounded-md w-full mt-5 hover:bg-orange-700 transition">
                   Dodaj

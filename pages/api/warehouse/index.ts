@@ -31,14 +31,13 @@ export default async function handler(
           name,
           quantity,
           productValue,
-          notes,
-          entryDate: new Date(),
+          notes: notes || '',
+          entryDate: new Date()
         },
       });
 
       return res.status(201).json(newItem);
     }
-
     return res.status(405).json({ error: 'Method Not Allowed' });
   } catch (error) {
     console.error('API Error:', error);
