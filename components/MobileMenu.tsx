@@ -18,18 +18,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ visible }) => {
         bg-opacity-20 text-center w-full top-8 right-0 py-5 flex-col bordr-2 border-gray-800 flex"
     >
       <div className="flex flex-col gap-4">
-        <Link href="/">
-          <NavbarItem label="Home" />
-        </Link>
-        <Link href="/vacations">
-          <NavbarItem label="Vacations" />
-        </Link>
-        <Link href="/overhours">
-          <NavbarItem label="Overhours" />
-        </Link>
-        <Link href="/users">
-          <NavbarItem label="Users" />
-        </Link>
+      <Link href="/">
+              <NavbarItem label="Strona Główna" />
+            </Link>
+            <Link href="/magazyn">
+              <NavbarItem label="Magazyn" />
+            </Link>
+            <Link href="/uzytkownicy">
+              <NavbarItem label="Użytkownicy" />
+            </Link>
         <p
           className="text-white cursor-pointer hover:text-gray-300 transition z-50"
           onClick={() => signOut()}

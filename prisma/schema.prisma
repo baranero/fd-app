@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,50 +10,57 @@ datasource db {
 model Firefighters {
   id String @id @default(uuid())
   name String @unique
-  vacations Vacations[]
-  overhours Overhours[]
+  warehouse Warehouse[]
   user User[]
 
-    @@map(name: "firefighters")
+  @@map(name: "firefighters")
 }
 
-model Overhours {
+model Products {
+  id String @id @default(uuid())
+  name String
+  manufacturer String
+  model String
+  price Int
+  warehouses Warehouse[] @relation("ProductWarehouses")
+}
+
+model Warehouse {
   id String @id @default(uuid())
   user Firefighters @relation(fields: [userId], references: [id])
   userId String
-  amount Int @default(0)
-}
+  product Products @relation(fields: [productId], references: [id], name: "ProductWarehouses")
+  productId String
+  manufacturer  String
+  model         String
+  name          String
+  quantity      Int
+  productValue  Int
+  notes         String?
+  entryDate     DateTime @default(now())
 
-model Vacations {
-  id String @id @default(uuid())
-  user Firefighters @relation(fields: [userId], references: [id])
-  userId String
-  amount Int @default(0)
-  type String
-
+  @@map(name: "warehouse")
 }
 
 model User {
-  id            String        @id
+  id            String        @id @default(uuid())
   name          String  @unique
   image         String?
   email         String?   @unique
   emailVerified DateTime?
   hashedPassword String?
-  isAdmin   String @default("false")
+  isAdmin       String @default("false")
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
-  firefighter Firefighters @relation(fields: [name], references: [name])
-  accounts Account[]
-  sessions Session[]
+  firefighter   Firefighters @relation(fields: [name], references: [name])
+  accounts      Account[]
+  sessions      Session[]
 
   @@map(name: "users")
 }
 
-
-
 model Account {
-  id                 String        @id
+  id                 String        @id @default(uuid())
   userId             String       @map(name: "user_id")
   type               String
   provider           String
@@ -80,10 +84,8 @@ model Account {
   @@map(name: "accounts")
 }
 
-
-
 model Session {
-  id           String      @id
+  id           String      @id @default(uuid())
   userId       String      @map(name: "user_id")
   expires      DateTime
   sessionToken String   @unique @map(name: "session_token")
@@ -93,8 +95,6 @@ model Session {
 
   @@map(name: "sessions")
 }
-
-
 
 model VerificationToken {
   id         String      @id

@@ -7,23 +7,21 @@ interface DetailsListProps {
 
 const DetailsList: React.FC<DetailsListProps> = ({ columns, rows }) => {
   return (
-    <div className="text-white">
+    <div className="text-white mt-16">
       <DataGrid
-        className="w-full lg:w-[70%]"
+        className="w-full"
         style={{
           color: "#FFF",
           background: "rgba(64, 64, 64)",
-          padding: "0 20px",
+          padding: "20px",
           margin: "0 auto",
+          borderRadius: "8px",
         }}
         rows={rows}
         columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
+        
         pageSizeOptions={[5, 10]}
+        autoHeight
       />
     </div>
   );

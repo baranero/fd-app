@@ -6,25 +6,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     await serverAuth(req, res);
 
-    if (req.method === 'POST') {
-      const { name } = req.body;
+    if (req.method === 'DELETE') {
+      const { id } = req.query;
 
-      if (!name) {
-        return res.status(400).json({ error: 'Name is required' });
+      if (!id || typeof id !== 'string') {
+        return res.status(400).json({ error: 'Invalid ID' });
       }
 
-      const newUser = await prismadb.user.create({
-        data: {
-          name,
-        },
+      const deletedProduct = await prismadb.products.delete({
+        where: { id },
       });
 
-      return res.status(201).json(newUser);
-    }
-
-    if (req.method === 'GET') {
-      const users = await prismadb.user.findMany();
-      return res.status(200).json(users);
+      return res.status(200).json(deletedProduct);
     }
 
     return res.status(405).json({ error: 'Method Not Allowed' });

@@ -11,8 +11,12 @@ body {
 }
 
 html {
-  @apply overflow-y-scroll h-full bg-[url('/images/background.jpg')] bg-fixed bg-no-repeat bg-center bg-cover;
+  
 }
+.negative {
+  filter: invert(1);
+}
+
 
 .swal-modal {
   background-color: rgb(61, 61, 61);

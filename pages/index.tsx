@@ -26,17 +26,17 @@ export default function Home() {
   return (
     <Layout>
       <Description
-        title="Work smart not hard!"
-        text="Check how much vacation you have left or how many overtime hours you have already worked!"
+        title="E-magazyn FireControl"
+        text="Nie zapomnij wpisać co pobrałeś!"
         src="/images/schedule.jpg"
         alt="Schedule photo"
       />
-      <Description
-        title="Keep your team under control"
+      {/* <Description
+        title=""
         text="All necessary elements visualized on charts."
         src="/images/chart.jpg"
         alt="Chart photo"
-      />
+      /> */}
     </Layout>
   );
 }

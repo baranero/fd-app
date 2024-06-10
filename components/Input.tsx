@@ -37,7 +37,7 @@ const Input: React.FC<InputProps> = ({
                     w-full
                     text-md
                     text-white
-                    bg-neutral-700
+                    bg-neutral-400
                     appearance-none
                     focus:outline-none
                     focus:ring-0
@@ -49,7 +49,7 @@ const Input: React.FC<InputProps> = ({
         className="
                     absolute
                     text-md
-                    text-zinc-400
+                    text-zinc-100
                     duration-150
                     transform
                     -translate-y-3

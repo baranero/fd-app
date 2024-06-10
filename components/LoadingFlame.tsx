@@ -9,7 +9,7 @@ const LoadingFlame = () => {
         <div className="blue circle"></div>
         <div className="black circle"></div>
       </div>
-      <p className="text-white -translate-y-4 text-5xl">Loading...</p>
+      <p className=" text-4xl">Ładowanie...</p>
     </div>
   );
 };

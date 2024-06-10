@@ -24,12 +24,12 @@ const UserItem: React.FC<UserItemProps> = ({ data, deleteButton }) => {
   return (
     <div
       className="
-        shadow-lg 
+        shadow-2xl
         group
         mx-5
         rounded-md
-        bg-white
-        bg-opacity-80
+
+        bg-zinc-300
         mt-10
         w-[60vw]
         md:w-[25vw]
@@ -56,13 +56,13 @@ const UserItem: React.FC<UserItemProps> = ({ data, deleteButton }) => {
               />
             </p>
           </div>
-          <UserInfo visible={showUserInfo} data={data} />
+
           {currentUser?.isAdmin === "true" ? (
             <button
               onClick={() => deleteButton(data.id, data.name)}
               className="bg-gray-500 w-full rounded-b-md py-3 hover:bg-gray-700 cursor-pointer transition"
             >
-              Delete
+              Usuń
             </button>
           ) : (
             <></>

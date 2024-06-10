@@ -43,14 +43,14 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
   return (
     <>
       <Navbar openModal={handleOpenModal} />
-      <div className="pb-10 min-h-screen">
+      <div className="pb-10">
         <SettingsModal visible={isOpen} onClose={closeModal} />
 
         {pageLoading ? <LoadingFlame/> : (
           <div>{children}</div>
         )}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

@@ -21,7 +21,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
         className="
               absolute
               text-md
-              text-zinc-400
+              text-zinc-100
               duration-150
               transform
               -translate-y-3
@@ -52,7 +52,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
                         w-full
                         text-md
                         text-white
-                        bg-neutral-700
+                        bg-neutral-400
                         
                         focus:outline-none
                         focus:ring-0

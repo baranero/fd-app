@@ -26,7 +26,7 @@ const VacationsChart: React.FC<UserListProps> = ({ holiday, additional }) => {
     plugins: {
       title: {
         display: true,
-        text: "Vacations",
+        text: "Magazyn",
         font: {
           size: 30,
         },

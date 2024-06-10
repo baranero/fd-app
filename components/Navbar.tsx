@@ -35,13 +35,12 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
               items-center
               transition
               duration-500
-              bg-zinc-700
-              bg-opacity-40
+
             "
       >
         <div className="flex flex-row">
           <Link href="/">
-            <Image src="/images/logo.svg" alt="Logo" width={120} height={100} />
+            <Image className="negative" src="/images/logo.svg" alt="Logo" width={120} height={100} />
           </Link>
           <div
             className="
@@ -53,16 +52,16 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
                         "
           >
             <Link href="/">
-              <NavbarItem label="Home" />
+              <NavbarItem label="Strona Główna" />
             </Link>
-            <Link href="/vacations">
-              <NavbarItem label="Vacations" />
+            <Link href="/warehouse">
+              <NavbarItem label="Dziennik" />
             </Link>
-            <Link href="/overhours">
-              <NavbarItem label="Overhours" />
+            <Link href="/products">
+              <NavbarItem label="Magazyn" />
             </Link>
             <Link href="/users">
-              <NavbarItem label="Users" />
+              <NavbarItem label="Użytkownicy" />
             </Link>
           </div>
         </div>
@@ -71,31 +70,31 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
           className="lg:hidden md:hidden flex items-center
                 "
         >
-          <p className="text-white mr-2 text-sm">Hello, {currentUser?.name}</p>
+          <p className=" mr-2 text-sm">Hello, {currentUser?.name}</p>
           <IoMdSettings
             onClick={openModal}
             size={30}
-            className="text-white mx-1 cursor-pointer"
+            className=" mx-1 cursor-pointer"
           />
           <GiHamburgerMenu
             onClick={toggleMobileMenu}
             size={30}
-            className={`text-white mx-2 transition ${
+            className={` mx-2 transition ${
               showMobileMenu ? "rotate-180" : "rotate-0"
             }`}
           />
         </div>
         <div className="hidden lg:flex md:flex flex-row items-center">
-          <p className="text-white mr-8 md:mr-4">Hello, {currentUser?.name}</p>
+          <p className=" mr-8 md:mr-4">Hello, {currentUser?.name}</p>
           <IoMdSettings
             onClick={openModal}
             size={30}
-            className="text-white mx-1 cursor-pointer"
+            className=" mx-1 cursor-pointer"
           />
           <BiLogOut
             onClick={() => signOut()}
             size={30}
-            className="text-white mx-1 cursor-pointer"
+            className=" mx-1 cursor-pointer"
           />
         </div>
       </div>

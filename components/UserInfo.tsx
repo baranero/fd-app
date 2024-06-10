@@ -37,15 +37,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ visible, data }) => {
         <p className="mt-4 ml-4 mb-2 text-lg">
           <strong>Vacations:</strong>{" "}
         </p>
-        <div>
-          <p className="text-sm ml-10 mb-1">
-            Holiday: {holiday[index].amount ? holiday[index].amount : 0}
-          </p>
-          <p className="text-sm ml-10 mb-2">
-            Additional:{" "}
-            {additional[index].amount ? additional[index].amount : 0}
-          </p>
-        </div>
+        
       </div>
     </div>
   );
