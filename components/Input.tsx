@@ -8,6 +8,7 @@ interface InputProps {
   label: string;
   type?: string;
   min?: number;
+  required?: boolean; // Dodajemy opcjonalną właściwość `required`
 }
 
 const Input: React.FC<InputProps> = ({
@@ -16,8 +17,9 @@ const Input: React.FC<InputProps> = ({
   onChange,
   value,
   label,
-  type,
+  type = "text",
   min,
+  required = false, // Domyślnie ustawiamy na false
 }) => {
   return (
     <div className="relative">
@@ -27,7 +29,8 @@ const Input: React.FC<InputProps> = ({
         onChange={onChange}
         value={value}
         type={type}
-        min={0}
+        min={min}
+        required={required} // Przekazujemy `required` do elementu `input`
         className="
                     block
                     rounded-md
