@@ -21,10 +21,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ visible }) => {
       <Link href="/">
               <NavbarItem label="Strona Główna" />
             </Link>
-            <Link href="/magazyn">
+            <Link href="/warehouse">
+              <NavbarItem label="Dziennik" />
+            </Link>
+            <Link href="/products">
               <NavbarItem label="Magazyn" />
             </Link>
-            <Link href="/uzytkownicy">
+            <Link href="/users">
               <NavbarItem label="Użytkownicy" />
             </Link>
         <p
