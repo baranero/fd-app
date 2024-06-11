@@ -171,7 +171,7 @@ const Warehouse: React.FC = () => {
     totalValue: item.quantity * item.productValue,
     notes: item.notes,
     entryDate: new Date(item.entryDate).toISOString(),
-    operation: item.operation,
+    operation: item.quantity > 0 ? "Dodano" : "Zabrano",
   }));
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
