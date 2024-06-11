@@ -31,8 +31,8 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [variant, setVariant] = useState("login");
 
-  const trimmedName = name.trimEnd()
-  const trimmedEmail = email.trimEnd()
+  const trimmedName = name.trimEnd();
+  const trimmedEmail = email.trimEnd();
 
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) =>
@@ -41,14 +41,13 @@ const Auth = () => {
   }, []);
 
   const login = useCallback(async () => {
-
     if (password.length < 8) {
       swal({
         title: "Warning!",
         icon: "warning",
         text: "Password must be at least 8 characters long.",
       });
-      setPassword('')
+      setPassword("");
       return;
     }
 
@@ -62,7 +61,7 @@ const Auth = () => {
       if (result?.error) {
         throw new Error(result.error);
       }
-  
+
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -71,57 +70,72 @@ const Auth = () => {
         icon: "warning",
         text: "Login failed. Please check your email and password.",
       });
-      setEmail('')
-      setPassword('')
+      setEmail("");
+      setPassword("");
     }
   }, [email, password, router]);
 
   const register = useCallback(async () => {
-
     if (password.length < 8) {
       swal({
         title: "Warning!",
         icon: "warning",
         text: "Password must be at least 8 characters long.",
       });
-      setPassword('')
+      setPassword("");
       return;
     }
-    
+
     try {
       await axios.post("/api/register", {
         email: trimmedEmail,
         name: trimmedName,
         password,
       });
-      
+
       login();
     } catch (error) {
-
-      console.log(error);
-      console.log(email, name);
-      
-      if (!email.includes("@")) {
-        swal({
-          title: "Warning!",
-          icon: "warning",
-          text: "Registration failed. Check your email address.",
-        });
+      console.log("Registration error:", error);
+      if (axios.isAxiosError(error) && error.response) {
+        const { status, data } = error.response;
+        if (status === 422 && data.error === "Email taken") {
+          swal({
+            title: "Warning!",
+            icon: "warning",
+            text: "Registration failed. Email is already in use.",
+          });
+        } else if (status === 422 && data.error === "Firefighter not found") {
+          swal({
+            title: "Warning!",
+            icon: "warning",
+            text: "Registration failed. Your username is not in the database.",
+          });
+        } else if (status === 422 && data.error === "Username taken") {
+          swal({
+            title: "Warning!",
+            icon: "warning",
+            text: "Registration failed. Username is already in use.",
+          });
+        } else {
+          swal({
+            title: "Warning!",
+            icon: "warning",
+            text: `Registration failed. ${data.error || "Unknown error."}`,
+          });
+        }
       } else {
         swal({
           title: "Warning!",
           icon: "warning",
-          text: "Registration failed. You have no access. Your username is not in the database.",
+          text: "Registration failed. Please try again.",
         });
-        
       }
-      
     }
-  }, [password, login, trimmedEmail, trimmedName, name, email]);
+  }, [password, login, trimmedEmail, trimmedName]);
 
   return (
     <div className="relative w-full">
-      <div className=" w-full">
+      <div className="w-full">
         <nav className="px-12 py-5">
           <Image className="negative" src="/images/logo.svg" alt="Logo" width={200} height={100} />
         </nav>
@@ -176,24 +190,12 @@ const Auth = () => {
                 {variant === "login" ? "Sign up" : "Sign in"}
               </span>
             </p>
-            <p className="text-neutral-400 mt-4">
-              Log in as an admin:
-            </p>
-            <p className="text-neutral-400">
-              Email: admin@test.com
-            </p>
-            <p className="text-neutral-400">
-              password: 123qwe!@#
-            </p>
-            <p className="text-neutral-400 mt-4">
-              Log in as a normal user:
-            </p>
-            <p className="text-neutral-400">
-              Email: user@test.com
-            </p>
-            <p className="text-neutral-400">
-              password: qweASDzxc
-            </p>
+            <p className="text-neutral-400 mt-4">Log in as an admin:</p>
+            <p className="text-neutral-400">Email: admin@test.com</p>
+            <p className="text-neutral-400">Password: 123qwe!@#</p>
+            <p className="text-neutral-400 mt-4">Log in as a normal user:</p>
+            <p className="text-neutral-400">Email: user@test.com</p>
+            <p className="text-neutral-400">Password: qweASDzxc</p>
           </div>
         </div>
       </div>
@@ -202,7 +204,3 @@ const Auth = () => {
 };
 
 export default Auth;
-
-{
-  /* <a href="https://www.freepik.com/free-vector/fire-sparks-background-realistic-flame-border-black-design-space-vector_18920303.htm#query=fire%20background&position=9&from_view=keyword&track=ais">Image by rawpixel.com</a> on Freepik */
-}

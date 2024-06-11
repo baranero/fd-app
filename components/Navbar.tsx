@@ -38,9 +38,9 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
 
             "
       >
-        <div className="flex flex-row">
+        <div className="flex flex-row items-center">
           <Link href="/">
-            <Image className="negative" src="/images/logo.svg" alt="Logo" width={120} height={100} />
+            <Image  src="/images/fire.webp" alt="Logo" width={200} height={100} />
           </Link>
           <div
             className="
@@ -85,7 +85,7 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
           />
         </div>
         <div className="hidden lg:flex md:flex flex-row items-center">
-          <p className=" mr-8 md:mr-4">Hello, {currentUser?.name}</p>
+          <p className=" mr-8 md:mr-4">Witaj, {currentUser?.name}</p>
           <IoMdSettings
             onClick={openModal}
             size={30}

@@ -13,11 +13,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ error: 'Invalid ID' });
       }
 
-      const deletedUser = await prismadb.user.delete({
-        where: { id },
+      // Znajdź użytkowników powiązanych ze strażakiem
+      const users = await prismadb.user.findMany({
+        where: {
+          firefighter: {
+            id,
+          },
+        },
       });
 
-      return res.status(200).json(deletedUser);
+      // Rozpocznij transakcję usunięcia strażaka i powiązanych użytkowników
+      await prismadb.$transaction(async (prisma) => {
+        // Usuń użytkowników, jeśli istnieją
+        if (users.length > 0) {
+          const userIds = users.map(user => user.id);
+          await prisma.user.deleteMany({
+            where: {
+              id: {
+                in: userIds,
+              },
+            },
+          });
+        }
+
+        // Usuń strażaka
+        await prisma.firefighters.delete({
+          where: { id },
+        });
+      });
+
+      return res.status(200).json({ message: 'Firefighter and associated users deleted successfully' });
     }
 
     return res.status(405).json({ error: 'Method Not Allowed' });

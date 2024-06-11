@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    await serverAuth(req, res);
+    const { currentUser } = await serverAuth(req, res);
 
     if (req.method === 'GET') {
       const warehouseItems = await prismadb.warehouse.findMany({
@@ -20,11 +20,11 @@ export default async function handler(
     }
 
     if (req.method === 'POST') {
-      const { userId, productId, manufacturer, model, name, quantity, productValue, notes } = req.body;
+      const { productId, manufacturer, model, name, quantity, productValue, notes } = req.body;
 
       const newItem = await prismadb.warehouse.create({
         data: {
-          userId,
+          userId: currentUser.id,
           productId,
           manufacturer,
           model,

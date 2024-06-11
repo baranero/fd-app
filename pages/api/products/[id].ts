@@ -8,27 +8,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (req.method === 'PUT') {
       const { id } = req.query;
-      const { quantity } = req.body;
+      const { name, manufacturer, model, price } = req.body;
 
       if (!id || typeof id !== 'string') {
         return res.status(400).json({ error: 'Invalid ID' });
       }
 
-      if (typeof quantity !== 'number') {
-        return res.status(400).json({ error: 'Invalid quantity' });
-      }
+      const updateData: { name?: string; manufacturer?: string; model?: string; price?: number } = {};
 
-      console.log(`Updating product with id: ${id} and quantity: ${quantity}`);
+      if (name) updateData.name = name;
+      if (manufacturer) updateData.manufacturer = manufacturer;
+      if (model) updateData.model = model;
+      if (price) updateData.price = price;
+
+      console.log(`Updating product with id: ${id}`, updateData);
 
       try {
         const updatedProduct = await prismadb.products.update({
           where: { id },
-          data: { quantity },
+          data: updateData,
         });
         return res.status(200).json(updatedProduct);
       } catch (updateError) {
         console.error('Error updating product:', updateError);
-        return res.status(500).json({ error: 'Failed to update product quantity' });
+        return res.status(500).json({ error: 'Failed to update product' });
       }
     }
 

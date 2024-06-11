@@ -13,18 +13,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ error: 'Name is required' });
       }
 
-      const newUser = await prismadb.user.create({
+      const newFirefighter = await prismadb.firefighters.create({
         data: {
           name,
         },
       });
 
-      return res.status(201).json(newUser);
+      return res.status(201).json(newFirefighter);
     }
 
     if (req.method === 'GET') {
-      const users = await prismadb.user.findMany();
-      return res.status(200).json(users);
+      const firefighters = await prismadb.firefighters.findMany();
+      return res.status(200).json(firefighters);
     }
 
     return res.status(405).json({ error: 'Method Not Allowed' });

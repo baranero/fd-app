@@ -10,7 +10,7 @@ datasource db {
 model Firefighters {
   id        String   @id @default(uuid())
   name      String   @unique
-  warehouse Warehouse[]
+
   user      User[]   // Assuming one firefighter can have multiple users or vice versa
 
   @@map(name: "firefighters")
@@ -26,10 +26,10 @@ model Products {
 }
 
 model Warehouse {
-  id           String      @id @default(uuid())
-  user         Firefighters @relation(fields: [userId], references: [id])
+  id           String   @id @default(uuid())
+  user         User     @relation(fields: [userId], references: [id]) // zmiana na User
   userId       String
-  product      Products    @relation(fields: [productId], references: [id], name: "ProductWarehouses")
+  product      Products  @relation(fields: [productId], references: [id], name: "ProductWarehouses")
   productId    String
   manufacturer String
   model        String
@@ -37,10 +37,11 @@ model Warehouse {
   quantity     Int
   productValue Int
   notes        String?
-  entryDate    DateTime    @default(now())
+  entryDate    DateTime  @default(now())
 
   @@map(name: "warehouse")
 }
+
 
 model User {
   id              String         @id @default(uuid())
@@ -54,6 +55,7 @@ model User {
   updatedAt       DateTime       @default(now()) @map(name: "updated_at")
   firefighterId   String?        // Adding firefighterId for the relation
   firefighter     Firefighters?  @relation(fields: [firefighterId], references: [id])
+    warehouse Warehouse[]
   accounts        Account[]
   sessions        Session[]
 

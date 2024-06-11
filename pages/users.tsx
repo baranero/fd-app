@@ -38,7 +38,7 @@ const Users = () => {
       swal({
         title: "Warning!",
         icon: "warning",
-        text: "Input an username!",
+        text: "Input a username!",
       });
     } else {
       try {
@@ -54,7 +54,7 @@ const Users = () => {
         swal({
           title: "Error!",
           icon: "error",
-          text: "Failed to add user. Please try again.",
+          text: "Failed to add firefighter. Please try again.",
         });
       }
     }

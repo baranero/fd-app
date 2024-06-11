@@ -13,34 +13,51 @@ export default async function handler(
 
     const { email, name, password } = req.body;
 
+    // Sprawdź, czy użytkownik o podanym emailu już istnieje
     const existingUser = await prismadb.user.findUnique({
       where: {
         email,
       },
     });
 
-    const userId: any = await prismadb.firefighters.findUnique({
-      where: {
-        name: name,
-      },
-    });
-
-    const sameId: any = userId.id;
-
     if (existingUser) {
       return res.status(422).json({ error: "Email taken" });
     }
 
+    // Sprawdź, czy nazwa użytkownika już istnieje
+    const existingUsername = await prismadb.user.findUnique({
+      where: {
+        name,
+      },
+    });
+
+    if (existingUsername) {
+      return res.status(422).json({ error: "Username taken" });
+    }
+
+    // Znajdź strażaka o podanej nazwie
+    const firefighter = await prismadb.firefighters.findUnique({
+      where: {
+        name,
+      },
+    });
+
+    if (!firefighter) {
+      return res.status(422).json({ error: "Firefighter not found" });
+    }
+
+    // Hashuj hasło
     const hashedPassword = await bcrypt.hash(password, 12);
 
+    // Utwórz użytkownika z ID strażaka
     const user = await prismadb.user.create({
       data: {
-        id: sameId,
         email,
         name,
         hashedPassword,
         image: "",
         emailVerified: new Date(),
+        firefighterId: firefighter.id,
       },
     });
 

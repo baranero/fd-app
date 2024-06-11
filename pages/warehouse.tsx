@@ -176,6 +176,7 @@ const Warehouse: React.FC = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const { productId, quantity, notes, operation } = formData;
 
     if (!productId || quantity <= 0) {
@@ -221,10 +222,6 @@ const Warehouse: React.FC = () => {
 
       console.log(`Updating product ${productId} with new quantity: ${updatedQuantity}`);
 
-      // await axios.put(`/api/products/${productId}`, {
-      //   quantity: updatedQuantity,
-      // });
-
       mutateWarehouse();
       mutateProducts();
       Swal.fire({
@@ -251,58 +248,56 @@ const Warehouse: React.FC = () => {
   return (
     <Layout>
       <div className="mb-10 px-8 lg:px-16 py-8 self-center mx-auto w-full">
-        {currentUser?.isAdmin === "true" && (
-          <div className="flex w-full">
-            <div className="w-full">
-              <h2 className="text-4xl mb-8 text-center font-semibold">Dodaję</h2>
-              <form onSubmit={handleSubmit} className="flex flex-col mx-auto gap-4 w-[90%] lg:w-[50%] md:w-[70%]">
-                <SelectInput
-                  id="productId"
-                  name="productId"
-                  label="Produkt"
-                  onChange={handleInputChange}
-                  value={formData.productId}
-                  options={Products.map((product: Product) => ({
-                    value: product.id,
-                    label: `${product.name} (${product.manufacturer} - ${product.model})`,
-                  }))}
-                />
-                <SelectInput
-                  id="operation"
-                  name="operation"
-                  label="Operacja"
-                  onChange={handleInputChange}
-                  value={formData.operation}
-                  options={[
-                    { value: "Dodaję", label: "Dodaję" },
-                    { value: "Zabieram", label: "Zabieram" },
-                  ]}
-                />
-                <Input
-                  label="Ilość"
-                  name="quantity"
-                  onChange={handleInputChange}
-                  id="quantity"
-                  type="number"
-                  value={formData.quantity}
-                  min={0}
-                />
-                <Input
-                  label="Uwagi"
-                  name="notes"
-                  onChange={handleInputChange}
-                  id="notes"
-                  type="text"
-                  value={formData.notes}
-                  required={false}
-                />
-                <button type="submit" className="bg-orange-600 py-3 text-white rounded-md w-full mt-5 hover:bg-orange-700 transition">
-                  Dodaj
-                </button>
-              </form>
-            </div>
+        <div className="flex w-full">
+          <div className="w-full">
+            <h2 className="text-4xl mb-8 text-center font-semibold">Dodaję</h2>
+            <form onSubmit={handleSubmit} className="flex flex-col mx-auto gap-4 w-[90%] lg:w-[50%] md:w-[70%]">
+              <SelectInput
+                id="productId"
+                name="productId"
+                label="Produkt"
+                onChange={handleInputChange}
+                value={formData.productId}
+                options={Products.map((product: Product) => ({
+                  value: product.id,
+                  label: `${product.name} (${product.manufacturer} - ${product.model})`,
+                }))}
+              />
+              <SelectInput
+                id="operation"
+                name="operation"
+                label="Operacja"
+                onChange={handleInputChange}
+                value={formData.operation}
+                options={[
+                  { value: "Dodaję", label: "Dodaję" },
+                  { value: "Zabieram", label: "Zabieram" },
+                ]}
+              />
+              <Input
+                label="Ilość"
+                name="quantity"
+                onChange={handleInputChange}
+                id="quantity"
+                type="number"
+                value={formData.quantity}
+                min={0}
+              />
+              <Input
+                label="Uwagi"
+                name="notes"
+                onChange={handleInputChange}
+                id="notes"
+                type="text"
+                value={formData.notes}
+                required={false}
+              />
+              <button type="submit" className="bg-orange-600 py-3 text-white rounded-md w-full mt-5 hover:bg-orange-700 transition">
+                Dodaj
+              </button>
+            </form>
           </div>
-        )}
+        </div>
         <DetailsList columns={columns} rows={rows} />
       </div>
     </Layout>
