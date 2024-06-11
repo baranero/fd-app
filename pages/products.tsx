@@ -10,7 +10,7 @@ import { GridColDef, GridValueFormatterParams } from "@mui/x-data-grid";
 import axios from "axios";
 import swal from "sweetalert";
 import { AiFillDelete } from "react-icons/ai";
-import Input from "@/components/Input"; // Importuj komponent Input
+import Input from "@/components/Input";
 import Swal from "sweetalert2";
 
 interface Product {
@@ -21,7 +21,7 @@ interface Product {
   price: number;
   quantity: number;
   totalValue: number;
-  index: number; // Dodajemy numer porządkowy
+  index: number;
 }
 
 export async function getServerSideProps(context: NextPageContext) {
@@ -113,13 +113,15 @@ const Products: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`/api/products/${id}`);
-      mutate();
-      swal({
-        title: "Success!",
-        icon: "success",
-        text: "Product deleted successfully!",
-      });
+      const response = await axios.delete(`/api/products/${id}`);
+      if (response.status === 200) {
+        mutate();
+        swal({
+          title: "Success!",
+          icon: "success",
+          text: "Product deleted successfully!",
+        });
+      }
     } catch (error) {
       console.error("Error:", error);
       swal({
@@ -185,12 +187,11 @@ const Products: React.FC = () => {
       : []),
   ];
 
-  // Oblicz sumę wartości w kolumnie "Wartość"
   const totalSum = Products.reduce((acc: number, product: Product) => acc + product.totalValue, 0);
 
   const rows = Products.map((product: Product) => ({
     id: product.id,
-    index: product.index, // Używamy numeru porządkowego
+    index: product.index,
     manufacturer: product.manufacturer,
     model: product.model,
     name: product.name,
@@ -199,10 +200,9 @@ const Products: React.FC = () => {
     totalValue: product.totalValue,
   }));
 
-  // Dodaj wiersz sumy na końcu tabeli
   rows.push({
     id: 'Suma',
-    index: rows.length + 1, // Dodajemy numer porządkowy dla wiersza sumy
+    index: rows.length + 1,
     manufacturer: '',
     model: '',
     name: '',
@@ -255,7 +255,7 @@ const Products: React.FC = () => {
               <button type="submit" className="bg-orange-600 py-3 text-white rounded-md w-full mt-5 hover:bg-orange-700 transition">
                 Dodaj
               </button>
-            </form>
+              </form>
           </div>
         )}
         <DetailsList columns={columns} rows={rows} />

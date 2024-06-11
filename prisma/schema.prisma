@@ -17,13 +17,15 @@ model Firefighters {
 }
 
 model Products {
-  id String @id @default(uuid())
-  name String
+  id          String    @id @default(uuid())
+  name        String
   manufacturer String
-  model String
-  price Int
-  warehouses Warehouse[] @relation("ProductWarehouses")
+  model       String
+  price       Int
+  quantity    Int       // Add this line
+  warehouses  Warehouse[] @relation("ProductWarehouses")
 }
+
 
 model Warehouse {
   id String @id @default(uuid())

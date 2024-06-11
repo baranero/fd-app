@@ -14,6 +14,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ error: 'Invalid ID' });
       }
 
+      if (typeof quantity !== 'number') {
+        return res.status(400).json({ error: 'Invalid quantity' });
+      }
+
       console.log(`Updating product with id: ${id} and quantity: ${quantity}`);
 
       try {
@@ -25,6 +29,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       } catch (updateError) {
         console.error('Error updating product:', updateError);
         return res.status(500).json({ error: 'Failed to update product quantity' });
+      }
+    }
+
+    if (req.method === 'DELETE') {
+      const { id } = req.query;
+
+      if (!id || typeof id !== 'string') {
+        return res.status(400).json({ error: 'Invalid ID' });
+      }
+
+      console.log(`Deleting product with id: ${id}`);
+
+      try {
+        await prismadb.products.delete({
+          where: { id },
+        });
+        return res.status(200).json({ message: 'Product deleted successfully' });
+      } catch (deleteError) {
+        console.error('Error deleting product:', deleteError);
+        return res.status(500).json({ error: 'Failed to delete product' });
       }
     }
 
