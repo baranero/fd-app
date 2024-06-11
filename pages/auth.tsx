@@ -137,12 +137,12 @@ const Auth = () => {
     <div className="relative w-full">
       <div className="w-full">
         <nav className="px-12 py-5">
-          <Image className="negative" src="/images/logo.svg" alt="Logo" width={200} height={100} />
+          <Image src="/images/fire.webp" alt="Logo" width={200} height={100} />
         </nav>
         <div className="flex justify-center mt-10">
           <div className="lg:bg-zinc-700 lg:bg-opacity-70 md:bg-zinc-700 md:bg-opacity-70 px-16 py-16 self-center mt-2 mb-10 lg:w-2/5 lg:max-w-md rounded-md w-full">
             <h2 className="text-white text-4xl mb-8 text-center font-semibold">
-              {variant === "login" ? "Sign in" : "Sign up"}
+              {variant === "login" ? "Zaloguj się" : "Zarejestruj się"}
             </h2>
             <div className="flex flex-col gap-4">
               {variant === "register" && (
@@ -165,7 +165,7 @@ const Auth = () => {
                 value={email}
               />
               <Input
-                label="Password"
+                label="Hasło"
                 name="password"
                 onChange={(event: any) => setPassword(event.target.value)}
                 id="password"
@@ -177,25 +177,19 @@ const Auth = () => {
               onClick={variant === "login" ? login : register}
               className="bg-orange-600 py-3 text-white rounded-md w-full mt-10 hover:bg-orange-700 transition"
             >
-              {variant === "login" ? "Login" : "Register"}
+              {variant === "login" ? "Zaloguj się" : "Zarejestruj się"}
             </button>
             <p className="text-neutral-400 mt-8">
               {variant === "login"
-                ? "Don't have an account?"
-                : "Have an account?"}{" "}
+                ? "Nie masz konta?"
+                : "Masz konto?"}{" "}
               <span
                 onClick={toggleVariant}
                 className="text-white ml-1 hover:underline cursor-pointer"
               >
-                {variant === "login" ? "Sign up" : "Sign in"}
+                {variant === "login" ? "Załóż konto" : "Zaloguj się"}
               </span>
             </p>
-            <p className="text-neutral-400 mt-4">Log in as an admin:</p>
-            <p className="text-neutral-400">Email: admin@test.com</p>
-            <p className="text-neutral-400">Password: 123qwe!@#</p>
-            <p className="text-neutral-400 mt-4">Log in as a normal user:</p>
-            <p className="text-neutral-400">Email: user@test.com</p>
-            <p className="text-neutral-400">Password: qweASDzxc</p>
           </div>
         </div>
       </div>
