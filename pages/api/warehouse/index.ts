@@ -2,10 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import prismadb from '@/lib/prismadb';
 import serverAuth from '@/lib/serverAuth';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { currentUser } = await serverAuth(req, res);
 
@@ -22,6 +19,24 @@ export default async function handler(
     if (req.method === 'POST') {
       const { productId, manufacturer, model, name, quantity, productValue, notes } = req.body;
 
+      const product = await prismadb.products.findUnique({
+        where: { id: productId },
+      });
+
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+
+      let updatedQuantity = product.quantity;
+      if (quantity > 0) {
+        updatedQuantity += quantity;
+      } else {
+        updatedQuantity -= Math.abs(quantity);
+        if (updatedQuantity < 0) {
+          return res.status(400).json({ error: 'Insufficient quantity in product' });
+        }
+      }
+
       const newItem = await prismadb.warehouse.create({
         data: {
           userId: currentUser.id,
@@ -32,8 +47,13 @@ export default async function handler(
           quantity,
           productValue,
           notes: notes || '',
-          entryDate: new Date()
+          entryDate: new Date(),
         },
+      });
+
+      await prismadb.products.update({
+        where: { id: productId },
+        data: { quantity: updatedQuantity },
       });
 
       return res.status(201).json(newItem);

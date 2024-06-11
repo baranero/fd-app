@@ -22,6 +22,7 @@ model Products {
   manufacturer String
   model       String
   price       Int
+  quantity    Int         // Dodano pole quantity
   warehouses  Warehouse[] @relation("ProductWarehouses")
 }
 

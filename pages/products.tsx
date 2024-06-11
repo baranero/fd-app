@@ -51,13 +51,14 @@ const Products: React.FC = () => {
     manufacturer: "",
     model: "",
     price: 0,
+    quantity: 0,
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "price" ? Number(value) : value,
+      [name]: name === "price" || name === "quantity" ? Number(value) : value,
     }));
   };
 
@@ -70,6 +71,7 @@ const Products: React.FC = () => {
         manufacturer: formData.manufacturer,
         model: formData.model,
         price: formData.price,
+        quantity: formData.quantity,
       });
 
       if (response.status === 200) {
@@ -92,6 +94,7 @@ const Products: React.FC = () => {
         manufacturer: "",
         model: "",
         price: 0,
+        quantity: 0,
       });
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
@@ -249,6 +252,16 @@ const Products: React.FC = () => {
                 type="number"
                 onChange={handleInputChange}
                 value={formData.price}
+                min={0}
+                required
+              />
+              <Input
+                id="quantity"
+                label="Ilość początkowa"
+                name="quantity"
+                type="number"
+                onChange={handleInputChange}
+                value={formData.quantity}
                 min={0}
                 required
               />

@@ -12,13 +12,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const productsWithQuantitiesAndValues = products.map((product, index) => {
         const productWarehouses = warehouses.filter(warehouse => warehouse.productId === product.id);
-        const quantity = productWarehouses.reduce((acc, warehouse) => acc + warehouse.quantity, 0);
-        const totalValue = quantity * product.price;
+        const warehouseQuantity = productWarehouses.reduce((acc, warehouse) => acc + warehouse.quantity, 0);
+        const currentQuantity = product.quantity;
+        const totalValue = currentQuantity * product.price;
 
         return {
           ...product,
           index: index + 1, // Dodaj numer porządkowy
-          quantity,
+          quantity: currentQuantity, // Oblicz aktualną ilość
           totalValue,
         };
       });
@@ -27,9 +28,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     if (req.method === 'POST') {
-      const { name, manufacturer, model, price } = req.body;
+      const { name, manufacturer, model, price, quantity } = req.body;
 
-      if (!name || !manufacturer || !model || typeof price !== 'number') {
+      if (!name || !manufacturer || !model || typeof price !== 'number' || typeof quantity !== 'number') {
         return res.status(400).json({ error: 'Missing required fields or invalid data' });
       }
 
@@ -56,6 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           manufacturer,
           model,
           price,
+          quantity,
         },
       });
 
